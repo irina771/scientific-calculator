@@ -156,6 +156,32 @@ public class MainViewModelTests
     }
 
     [Fact]
+    public void Function_AfterNumber_WrapsCurrentOperand()
+    {
+        var viewModel = Type("30");
+        viewModel.InputFunction("sin");
+
+        Assert.Equal("sin(30)", viewModel.DisplayText);
+
+        viewModel.CalculateEquals();
+        Assert.Equal("0.5", viewModel.DisplayText);
+    }
+
+    [Fact]
+    public void Function_AfterOperator_OpensPrefixInsteadOfWrapping()
+    {
+        var viewModel = Type("2+");
+        viewModel.InputFunction("sin");
+
+        viewModel.InputDigit("9");
+        viewModel.InputDigit("0");
+        viewModel.InputCloseParen();
+        viewModel.CalculateEquals();
+
+        Assert.Equal("3", viewModel.DisplayText);
+    }
+
+    [Fact]
     public void SecondToggle_ChangesLabelsAndInsertsInverseFunction()
     {
         var viewModel = new MainViewModel();

@@ -1,207 +1,259 @@
-<Window xmlns="https://github.com/avaloniaui"
+﻿<Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:ScientificCalculator.ViewModels"
         x:Class="ScientificCalculator.Views.MainWindow"
         x:DataType="vm:MainViewModel"
         Title="Calculadora científica"
-        Width="700"
-        Height="700"
-        MinWidth="620"
-        MinHeight="620"
+        Width="900"
+        Height="830"
+        MinWidth="800"
+        MinHeight="740"
         WindowStartupLocation="CenterScreen"
-        Icon="/Assets/app.ico">
+        Icon="/Assets/app.ico"
+        Background="#7A3157"
+        RenderOptions.BitmapInterpolationMode="None">
 
-  <Window.Background>
-    <LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%">
-      <GradientStop Color="#1D1D1D" Offset="0" />
-      <GradientStop Color="#141414" Offset="1" />
-    </LinearGradientBrush>
-  </Window.Background>
+  <!-- Cuerpo de la calculadora con la paleta pixel art original -->
+  <Border Margin="12"
+          Background="#FFAACB"
+          BorderBrush="#D980A2"
+          BorderThickness="3"
+          CornerRadius="10"
+          ClipToBounds="True"
+          BoxShadow="0 12 28 0 #40000000">
 
-  <Grid RowDefinitions="Auto,Auto,*">
+    <Grid Margin="20,16,20,16" RowDefinitions="Auto,Auto,Auto,*">
 
-    <!-- Barra superior -->
-    <Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto,Auto" Margin="14,10,16,2">
-      <Button Classes="icon"
-              Content="☰"
-              Command="{Binding ToggleHistoryCommand}"
-              ToolTip.Tip="Mostrar u ocultar el historial" />
+      <!-- Cabecera -->
+      <Grid Grid.Row="0" ColumnDefinitions="Auto,Auto,*,Auto" Height="44">
+        <Button Classes="icon"
+                Content="☰"
+                Command="{Binding ToggleHistoryCommand}"
+                ToolTip.Tip="Mostrar u ocultar el historial" />
 
-      <TextBlock Grid.Column="1"
-                 Text="Científica"
-                 FontSize="14"
-                 Foreground="#E8E8E8"
-                 VerticalAlignment="Center"
-                 Margin="10,0,0,0" />
+        <Image Grid.Column="1"
+               Source="/Assets/Original/sailor-icon.png"
+               Width="50"
+               Height="40"
+               Stretch="Uniform"
+               Margin="6,0,8,0"
+               VerticalAlignment="Center" />
 
-      <TextBlock Grid.Column="2"
-                 Text="M"
-                 FontSize="13"
-                 FontWeight="SemiBold"
-                 Foreground="#4CC2FF"
-                 VerticalAlignment="Center"
-                 Margin="0,0,12,0"
-                 IsVisible="{Binding HasMemory}"
-                 ToolTip.Tip="Hay un valor en la memoria" />
+        <TextBlock Grid.Column="2"
+                   Text="Calculadora científica"
+                   FontSize="16"
+                   FontWeight="Bold"
+                   Foreground="#4A1E35"
+                   VerticalAlignment="Center"
+                   Margin="0,0,10,0" />
 
-      <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center">
-        <Button Classes="pill"
-                Classes.active="{Binding IsDegrees}"
-                Content="DEG"
-                Command="{Binding SetDegreesCommand}"
-                ToolTip.Tip="Grados" />
-        <Button Classes="pill"
-                Classes.active="{Binding IsRadians}"
-                Content="RAD"
-                Command="{Binding SetRadiansCommand}"
-                ToolTip.Tip="Radianes" />
-      </StackPanel>
-    </Grid>
-
-    <!-- Pantalla -->
-    <Border Grid.Row="1"
-            Margin="16,6,16,2"
-            Padding="16,10"
-            Background="#1F1F1F"
-            CornerRadius="8"
-            MinHeight="132">
-      <Grid RowDefinitions="Auto,*">
-        <TextBlock Text="{Binding SecondaryText}"
-                   FontSize="14"
-                   Foreground="#9C9C9C"
-                   HorizontalAlignment="Right"
-                   TextTrimming="CharacterEllipsis"
-                   MinHeight="20" />
-
-        <TextBlock Grid.Row="1"
-                   Text="{Binding DisplayText}"
-                   FontSize="{Binding DisplayFontSize}"
-                   FontWeight="SemiBold"
-                   Foreground="#FFFFFF"
-                   HorizontalAlignment="Right"
-                   VerticalAlignment="Bottom"
-                   TextTrimming="CharacterEllipsis"
-                   Margin="0,4,0,0" />
-      </Grid>
-    </Border>
-
-    <!-- Teclado -->
-    <Grid Grid.Row="2" Margin="12,4,12,12" RowDefinitions="Auto,*">
-
-      <Grid Grid.Row="0" ColumnDefinitions="*,*,*,*,*" Height="32" Margin="2,0,2,4">
-        <Button Grid.Column="0" Classes="memory" Content="MC" Command="{Binding MemoryClearCommand}" ToolTip.Tip="Borrar memoria" />
-        <Button Grid.Column="1" Classes="memory" Content="MR" Command="{Binding MemoryRecallCommand}" ToolTip.Tip="Recuperar memoria" />
-        <Button Grid.Column="2" Classes="memory" Content="M+" Command="{Binding MemoryAddCommand}" ToolTip.Tip="Sumar a la memoria" />
-        <Button Grid.Column="3" Classes="memory" Content="M−" Command="{Binding MemorySubtractCommand}" ToolTip.Tip="Restar de la memoria" />
-        <Button Grid.Column="4" Classes="memory" Content="MS" Command="{Binding MemoryStoreCommand}" ToolTip.Tip="Guardar en memoria" />
+        <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center">
+          <Button Classes="pill"
+                  Classes.active="{Binding IsDegrees}"
+                  Content="DEG"
+                  Command="{Binding SetDegreesCommand}"
+                  ToolTip.Tip="Grados" />
+          <Button Classes="pill"
+                  Classes.active="{Binding IsRadians}"
+                  Content="RAD"
+                  Command="{Binding SetRadiansCommand}"
+                  ToolTip.Tip="Radianes" />
+        </StackPanel>
       </Grid>
 
+      <!-- Pantalla: bisel escalable reconstruido con la paleta de pantalla.png -->
       <Grid Grid.Row="1"
-            RowDefinitions="*,*,*,*,*"
-            ColumnDefinitions="*,*,*,*,*,*,*,*">
+            Height="190"
+            Margin="0,10,0,10">
+        <Border Background="#2A1520"
+                BorderBrush="#FFE7ED"
+                BorderThickness="5"
+                CornerRadius="2"
+                BoxShadow="0 0 0 3 #D980A2" />
 
-        <!-- Panel científico -->
-        <Button Grid.Row="0" Grid.Column="0"
-                Classes="sci"
-                Classes.active="{Binding IsSecondActive}"
-                Content="2nd"
-                Command="{Binding ToggleSecondCommand}"
-                ToolTip.Tip="Funciones inversas" />
-        <Button Grid.Row="0" Grid.Column="1" Classes="sci" Content="{Binding SinLabel}" Command="{Binding ScienceCommand}" CommandParameter="sin" />
-        <Button Grid.Row="0" Grid.Column="2" Classes="sci" Content="{Binding CosLabel}" Command="{Binding ScienceCommand}" CommandParameter="cos" />
-        <Button Grid.Row="0" Grid.Column="3" Classes="sci" Content="{Binding TanLabel}" Command="{Binding ScienceCommand}" CommandParameter="tan" />
+        <Grid Margin="26,14,26,14" RowDefinitions="Auto,*">
+          <TextBlock Text="{Binding SecondaryText}"
+                     FontSize="13"
+                     Foreground="#E8A6C5"
+                     HorizontalAlignment="Right"
+                     TextTrimming="CharacterEllipsis"
+                     MinHeight="18" />
 
-        <Button Grid.Row="1" Grid.Column="0" Classes="sci" Content="(" Command="{Binding InputOpenParenCommand}" />
-        <Button Grid.Row="1" Grid.Column="1" Classes="sci" Content=")" Command="{Binding InputCloseParenCommand}" />
-        <Button Grid.Row="1" Grid.Column="2" Classes="sci" Content="π" Command="{Binding InputConstantCommand}" CommandParameter="π" />
-        <Button Grid.Row="1" Grid.Column="3" Classes="sci" Content="e" Command="{Binding InputConstantCommand}" CommandParameter="e" />
-
-        <Button Grid.Row="2" Grid.Column="0" Classes="sci" Content="{Binding LogLabel}" Command="{Binding ScienceCommand}" CommandParameter="log" ToolTip.Tip="log: base 10 · 10ˣ con 2nd" />
-        <Button Grid.Row="2" Grid.Column="1" Classes="sci" Content="{Binding LnLabel}" Command="{Binding ScienceCommand}" CommandParameter="ln" ToolTip.Tip="ln: logaritmo natural · eˣ con 2nd" />
-        <Button Grid.Row="2" Grid.Column="2" Classes="sci" Content="{Binding SqrtLabel}" Command="{Binding ScienceCommand}" CommandParameter="sqrt" ToolTip.Tip="Raíz cuadrada · raíz cúbica con 2nd" />
-        <Button Grid.Row="2" Grid.Column="3" Classes="sci" Content="{Binding SquareLabel}" Command="{Binding ScienceCommand}" CommandParameter="square" />
-
-        <Button Grid.Row="3" Grid.Column="0" Classes="sci" Content="xʸ" Command="{Binding InputPowerCommand}" ToolTip.Tip="Potencia" />
-        <Button Grid.Row="3" Grid.Column="1" Classes="sci" Content="n!" Command="{Binding InputFactorialCommand}" ToolTip.Tip="Factorial" />
-        <Button Grid.Row="3" Grid.Column="2" Classes="sci" Content="1/x" Command="{Binding InputReciprocalCommand}" />
-        <Button Grid.Row="3" Grid.Column="3" Classes="sci" Content="%" Command="{Binding InputPercentCommand}" />
-
-        <Button Grid.Row="4" Grid.Column="0" Classes="sci" Content="|x|" Command="{Binding InputAbsCommand}" />
-        <Button Grid.Row="4" Grid.Column="1" Classes="sci" Content="EXP" Command="{Binding InputExpCommand}" ToolTip.Tip="Notación científica" />
-        <Button Grid.Row="4" Grid.Column="2" Classes="sci" Content="ANS" Command="{Binding InputAnsCommand}" ToolTip.Tip="Último resultado" />
-        <Button Grid.Row="4" Grid.Column="3" Classes="sci" Content="←" Command="{Binding BackspaceCommand}" ToolTip.Tip="Borrar un carácter" />
-
-        <!-- Panel estándar -->
-        <Button Grid.Row="0" Grid.Column="4" Content="C" Command="{Binding ClearAllCommand}" ToolTip.Tip="Borrar todo" />
-        <Button Grid.Row="0" Grid.Column="5" Content="CE" Command="{Binding ClearEntryCommand}" ToolTip.Tip="Borrar la entrada" />
-        <Button Grid.Row="0" Grid.Column="6" Content="±" Command="{Binding ToggleSignCommand}" />
-        <Button Grid.Row="0" Grid.Column="7" Classes="op" Content="÷" Command="{Binding InputOperatorCommand}" CommandParameter="/" />
-
-        <Button Grid.Row="1" Grid.Column="4" Content="7" Command="{Binding InputDigitCommand}" CommandParameter="7" />
-        <Button Grid.Row="1" Grid.Column="5" Content="8" Command="{Binding InputDigitCommand}" CommandParameter="8" />
-        <Button Grid.Row="1" Grid.Column="6" Content="9" Command="{Binding InputDigitCommand}" CommandParameter="9" />
-        <Button Grid.Row="1" Grid.Column="7" Classes="op" Content="×" Command="{Binding InputOperatorCommand}" CommandParameter="*" />
-
-        <Button Grid.Row="2" Grid.Column="4" Content="4" Command="{Binding InputDigitCommand}" CommandParameter="4" />
-        <Button Grid.Row="2" Grid.Column="5" Content="5" Command="{Binding InputDigitCommand}" CommandParameter="5" />
-        <Button Grid.Row="2" Grid.Column="6" Content="6" Command="{Binding InputDigitCommand}" CommandParameter="6" />
-        <Button Grid.Row="2" Grid.Column="7" Classes="op" Content="−" Command="{Binding InputOperatorCommand}" CommandParameter="-" />
-
-        <Button Grid.Row="3" Grid.Column="4" Content="1" Command="{Binding InputDigitCommand}" CommandParameter="1" />
-        <Button Grid.Row="3" Grid.Column="5" Content="2" Command="{Binding InputDigitCommand}" CommandParameter="2" />
-        <Button Grid.Row="3" Grid.Column="6" Content="3" Command="{Binding InputDigitCommand}" CommandParameter="3" />
-        <Button Grid.Row="3" Grid.Column="7" Classes="op" Content="+" Command="{Binding InputOperatorCommand}" CommandParameter="+" />
-
-        <Button Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="2" Content="0" Command="{Binding InputDigitCommand}" CommandParameter="0" />
-        <Button Grid.Row="4" Grid.Column="6" Content="," Command="{Binding InputDecimalCommand}" />
-        <Button Grid.Row="4" Grid.Column="7" Classes="equals" Content="=" Command="{Binding CalculateEqualsCommand}" />
-      </Grid>
-    </Grid>
-
-    <!-- Historial (panel superpuesto) -->
-    <Border Grid.Row="1" Grid.RowSpan="2"
-            Width="300"
-            HorizontalAlignment="Left"
-            Margin="14,0,0,14"
-            Padding="8"
-            Background="#F2262626"
-            BorderBrush="#3A3A3A"
-            BorderThickness="1"
-            CornerRadius="10"
-            IsVisible="{Binding IsHistoryOpen}">
-      <Grid RowDefinitions="Auto,*">
-        <Grid Grid.Row="0" ColumnDefinitions="*,Auto,Auto" Margin="4,2,2,6">
-          <TextBlock Text="Historial" FontSize="15" FontWeight="SemiBold" Foreground="#EDEDED" VerticalAlignment="Center" />
-          <Button Grid.Column="1" Classes="link" Content="Borrar" Command="{Binding ClearHistoryCommand}" />
-          <Button Grid.Column="2" Classes="link" Content="✕" Command="{Binding ToggleHistoryCommand}" ToolTip.Tip="Cerrar historial" />
+          <TextBlock Grid.Row="1"
+                     Text="{Binding DisplayText}"
+                     FontSize="{Binding DisplayFontSize}"
+                     FontWeight="SemiBold"
+                     Foreground="#FFF4F8"
+                     HorizontalAlignment="Right"
+                     VerticalAlignment="Bottom"
+                     TextTrimming="CharacterEllipsis"
+                     Margin="0,4,0,0" />
         </Grid>
-
-        <ScrollViewer Grid.Row="1">
-          <ItemsControl ItemsSource="{Binding History}">
-            <ItemsControl.ItemTemplate>
-              <DataTemplate x:DataType="vm:HistoryEntry">
-                <Button Classes="history"
-                        Tag="{Binding Value}"
-                        Click="History_Click"
-                        ToolTip.Tip="Usar este resultado">
-                  <StackPanel HorizontalAlignment="Right">
-                    <TextBlock Text="{Binding Expression}"
-                               FontSize="12"
-                               Foreground="#8E8E8E"
-                               HorizontalAlignment="Right"
-                               TextTrimming="CharacterEllipsis" />
-                    <TextBlock Text="{Binding Result}"
-                               FontSize="19"
-                               Foreground="#FFFFFF"
-                               HorizontalAlignment="Right" />
-                  </StackPanel>
-                </Button>
-              </DataTemplate>
-            </ItemsControl.ItemTemplate>
-          </ItemsControl>
-        </ScrollViewer>
       </Grid>
-    </Border>
 
-  </Grid>
+      <!-- Memoria -->
+      <UniformGrid Grid.Row="2"
+                   Columns="5"
+                   Width="470"
+                   Height="30"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,4">
+        <Button Classes="memo" Content="MC" Command="{Binding MemoryClearCommand}" ToolTip.Tip="Borrar memoria" />
+        <Button Classes="memo" Content="MR" Command="{Binding MemoryRecallCommand}" ToolTip.Tip="Recuperar memoria" />
+        <Button Classes="memo" Content="M+" Command="{Binding MemoryAddCommand}" ToolTip.Tip="Sumar a la memoria" />
+        <Button Classes="memo" Content="M−" Command="{Binding MemorySubtractCommand}" ToolTip.Tip="Restar de la memoria" />
+        <Button Classes="memo" Content="MS" Command="{Binding MemoryStoreCommand}" ToolTip.Tip="Guardar en memoria" />
+      </UniformGrid>
+
+      <!-- Teclado: se escala de forma uniforme al redimensionar -->
+      <Viewbox Grid.Row="3"
+               Stretch="Uniform"
+               StretchDirection="Both"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center">
+        <Grid Width="720" Height="450"
+              RowDefinitions="90,90,90,90,90"
+              ColumnDefinitions="90,90,90,90,90,90,90,90">
+
+          <!-- Panel científico -->
+          <Button Grid.Row="0" Grid.Column="0"
+                  Classes="pixel"
+                  Classes.active="{Binding IsSecondActive}"
+                  Content="2nd"
+                  Command="{Binding ToggleSecondCommand}"
+                  AutomationProperties.Name="2nd"
+                  ToolTip.Tip="Funciones inversas" />
+          <Button Grid.Row="0" Grid.Column="1" Classes="pixel" Content="{Binding SinLabel}" Command="{Binding ScienceCommand}" CommandParameter="sin" AutomationProperties.Name="sin" />
+          <Button Grid.Row="0" Grid.Column="2" Classes="pixel" Content="{Binding CosLabel}" Command="{Binding ScienceCommand}" CommandParameter="cos" AutomationProperties.Name="cos" />
+          <Button Grid.Row="0" Grid.Column="3" Classes="pixel" Content="{Binding TanLabel}" Command="{Binding ScienceCommand}" CommandParameter="tan" AutomationProperties.Name="tan" />
+
+          <Button Grid.Row="1" Grid.Column="0" Classes="pixel" Content="(" Command="{Binding InputOpenParenCommand}" AutomationProperties.Name="parentesis_abre" />
+          <Button Grid.Row="1" Grid.Column="1" Classes="pixel" Content=")" Command="{Binding InputCloseParenCommand}" AutomationProperties.Name="parentesis_cierra" />
+          <Button Grid.Row="1" Grid.Column="2" Classes="pixel" Content="π" Command="{Binding InputConstantCommand}" CommandParameter="π" AutomationProperties.Name="pi" ToolTip.Tip="Pi" />
+          <Button Grid.Row="1" Grid.Column="3" Classes="pixel" Content="e" Command="{Binding InputConstantCommand}" CommandParameter="e" AutomationProperties.Name="euler" ToolTip.Tip="Número de Euler" />
+
+          <Button Grid.Row="2" Grid.Column="0" Classes="pixel" Content="{Binding LogLabel}" Command="{Binding ScienceCommand}" CommandParameter="log" AutomationProperties.Name="log" ToolTip.Tip="log: base 10 · 10ˣ con 2nd" />
+          <Button Grid.Row="2" Grid.Column="1" Classes="pixel" Content="{Binding LnLabel}" Command="{Binding ScienceCommand}" CommandParameter="ln" AutomationProperties.Name="ln" ToolTip.Tip="ln: logaritmo natural · eˣ con 2nd" />
+          <Button Grid.Row="2" Grid.Column="2" Classes="pixel" Content="{Binding SqrtLabel}" Command="{Binding ScienceCommand}" CommandParameter="sqrt" AutomationProperties.Name="sqrt" ToolTip.Tip="Raíz cuadrada · raíz cúbica con 2nd" />
+          <Button Grid.Row="2" Grid.Column="3" Classes="pixel" Content="{Binding SquareLabel}" Command="{Binding ScienceCommand}" CommandParameter="square" AutomationProperties.Name="square" />
+
+          <Button Grid.Row="3" Grid.Column="0" Classes="pixel" Content="xʸ" Command="{Binding InputPowerCommand}" AutomationProperties.Name="potencia" ToolTip.Tip="Potencia" />
+          <Button Grid.Row="3" Grid.Column="1" Classes="pixel" Content="n!" Command="{Binding InputFactorialCommand}" AutomationProperties.Name="factorial" ToolTip.Tip="Factorial" />
+          <Button Grid.Row="3" Grid.Column="2" Classes="pixel" Content="1/x" Command="{Binding InputReciprocalCommand}" AutomationProperties.Name="reciproco" />
+          <Button Grid.Row="3" Grid.Column="3" Classes="pixel" Content="%" Command="{Binding InputPercentCommand}" AutomationProperties.Name="porcentaje" />
+
+          <Button Grid.Row="4" Grid.Column="0" Classes="pixel" Content="|x|" Command="{Binding InputAbsCommand}" AutomationProperties.Name="valor_absoluto" />
+          <Button Grid.Row="4" Grid.Column="1" Classes="pixel" Content="EXP" Command="{Binding InputExpCommand}" AutomationProperties.Name="EXP" ToolTip.Tip="Notación científica" />
+          <Button Grid.Row="4" Grid.Column="2" Classes="pixel" Content="ANS" Command="{Binding InputAnsCommand}" AutomationProperties.Name="ANS" ToolTip.Tip="Último resultado" />
+          <Button Grid.Row="4" Grid.Column="3" Classes="pixel" Content="HIST" Command="{Binding ToggleHistoryCommand}" AutomationProperties.Name="HIST" ToolTip.Tip="Mostrar u ocultar el historial" />
+
+          <!-- Panel estándar con los PNG originales -->
+          <Button Grid.Row="0" Grid.Column="4" Classes="key" Command="{Binding ClearAllCommand}" ToolTip.Tip="Borrar todo" AutomationProperties.Name="C">
+            <Image Source="/Assets/Original/normal_c_btn.png" Stretch="Fill" />
+          </Button>
+          <Button Grid.Row="0" Grid.Column="5" Classes="pixel" Content="CE" Command="{Binding ClearEntryCommand}" AutomationProperties.Name="CE" ToolTip.Tip="Borrar la entrada" />
+          <Button Grid.Row="0" Grid.Column="6" Classes="pixel" Content="±" Command="{Binding ToggleSignCommand}" AutomationProperties.Name="cambiar_signo" ToolTip.Tip="Cambiar de signo" />
+          <Button Grid.Row="0" Grid.Column="7" Classes="key" Command="{Binding InputOperatorCommand}" CommandParameter="/" ToolTip.Tip="Dividir" AutomationProperties.Name="÷">
+            <Image Source="/Assets/Original/normal_divide_btn.png" Stretch="Fill" />
+          </Button>
+
+          <Button Grid.Row="1" Grid.Column="4" Classes="key" Command="{Binding InputDigitCommand}" CommandParameter="7" ToolTip.Tip="7" AutomationProperties.Name="7">
+            <Image Source="/Assets/Original/normal_7_btn.png" Stretch="Fill" />
+          </Button>
+          <Button Grid.Row="1" Grid.Column="5" Classes="key" Command="{Binding InputDigitCommand}" CommandParameter="8" ToolTip.Tip="8" AutomationProperties.Name="8">
+            <Image Source="/Assets/Original/normal_8_btn.png" Stretch="Fill" />
+          </Button>
+          <Button Grid.Row="1" Grid.Column="6" Classes="key" Command="{Binding InputDigitCommand}" CommandParameter="9" ToolTip.Tip="9" AutomationProperties.Name="9">
+            <Image Source="/Assets/Original/normal_9_btn.png" Stretch="Fill" />
+          </Button>
+          <Button Grid.Row="1" Grid.Column="7" Classes="key" Command="{Binding InputOperatorCommand}" CommandParameter="*" ToolTip.Tip="Multiplicar" AutomationProperties.Name="×">
+            <Image Source="/Assets/Original/normal_x_btn.png" Stretch="Fill" />
+          </Button>
+
+          <Button Grid.Row="2" Grid.Column="4" Classes="key" Command="{Binding InputDigitCommand}" CommandParameter="4" ToolTip.Tip="4" AutomationProperties.Name="4">
+            <Image Source="/Assets/Original/normal_4_btn.png" Stretch="Fill" />
+          </Button>
+          <Button Grid.Row="2" Grid.Column="5" Classes="key" Command="{Binding InputDigitCommand}" CommandParameter="5" ToolTip.Tip="5" AutomationProperties.Name="5">
+            <Image Source="/Assets/Original/normal_5_btn.png" Stretch="Fill" />
+          </Button>
+          <Button Grid.Row="2" Grid.Column="6" Classes="key" Command="{Binding InputDigitCommand}" CommandParameter="6" ToolTip.Tip="6" AutomationProperties.Name="6">
+            <Image Source="/Assets/Original/normal_6_btn.png" Stretch="Fill" />
+          </Button>
+          <Button Grid.Row="2" Grid.Column="7" Classes="key" Command="{Binding InputOperatorCommand}" CommandParameter="-" ToolTip.Tip="Restar" AutomationProperties.Name="−">
+            <Image Source="/Assets/Original/normal_-_btn.png" Stretch="Fill" />
+          </Button>
+
+          <Button Grid.Row="3" Grid.Column="4" Classes="key" Command="{Binding InputDigitCommand}" CommandParameter="1" ToolTip.Tip="1" AutomationProperties.Name="1">
+            <Image Source="/Assets/Original/normal_1_btn.png" Stretch="Fill" />
+          </Button>
+          <Button Grid.Row="3" Grid.Column="5" Classes="key" Command="{Binding InputDigitCommand}" CommandParameter="2" ToolTip.Tip="2" AutomationProperties.Name="2">
+            <Image Source="/Assets/Original/normal_2_btn.png" Stretch="Fill" />
+          </Button>
+          <Button Grid.Row="3" Grid.Column="6" Classes="key" Command="{Binding InputDigitCommand}" CommandParameter="3" ToolTip.Tip="3" AutomationProperties.Name="3">
+            <Image Source="/Assets/Original/normal_3_btn.png" Stretch="Fill" />
+          </Button>
+          <Button Grid.Row="3" Grid.Column="7" Classes="key" Command="{Binding InputOperatorCommand}" CommandParameter="+" ToolTip.Tip="Sumar" AutomationProperties.Name="+">
+            <Image Source="/Assets/Original/normal_+_btn.png" Stretch="Fill" />
+          </Button>
+
+          <Button Grid.Row="4" Grid.Column="4" Classes="key" Command="{Binding InputDigitCommand}" CommandParameter="0" ToolTip.Tip="0" AutomationProperties.Name="0">
+            <Image Source="/Assets/Original/normal_0_btn.png" Stretch="Fill" />
+          </Button>
+          <Button Grid.Row="4" Grid.Column="5" Classes="key" Command="{Binding InputDecimalCommand}" ToolTip.Tip="Separador decimal" AutomationProperties.Name="coma">
+            <Image Source="/Assets/Original/normal_,_btn.png" Stretch="Fill" />
+          </Button>
+          <Button Grid.Row="4" Grid.Column="6" Classes="pixel" Content="←" Command="{Binding BackspaceCommand}" AutomationProperties.Name="borrar" ToolTip.Tip="Borrar un carácter" />
+          <Button Grid.Row="4" Grid.Column="7" Classes="key" Command="{Binding CalculateEqualsCommand}" ToolTip.Tip="Calcular" AutomationProperties.Name="=">
+            <Image Source="/Assets/Original/normal_=_btn.png" Stretch="Fill" />
+          </Button>
+        </Grid>
+      </Viewbox>
+
+      <!-- Historial -->
+      <Border Grid.Row="1" Grid.RowSpan="3"
+              Width="320"
+              HorizontalAlignment="Left"
+              Padding="10"
+              Background="#2A1520"
+              BorderBrush="#FFB6D5"
+              BorderThickness="2"
+              CornerRadius="4"
+              BoxShadow="0 8 24 0 #55000000"
+              IsVisible="{Binding IsHistoryOpen}">
+        <Grid RowDefinitions="Auto,*">
+          <Grid Grid.Row="0" ColumnDefinitions="*,Auto,Auto" Margin="4,2,2,6">
+            <TextBlock Text="Historial" FontSize="15" FontWeight="Bold" Foreground="#FFE3F0" VerticalAlignment="Center" />
+            <Button Grid.Column="1" Classes="link" Content="Borrar" Command="{Binding ClearHistoryCommand}" />
+            <Button Grid.Column="2" Classes="link" Content="✕" Command="{Binding ToggleHistoryCommand}" ToolTip.Tip="Cerrar historial" />
+          </Grid>
+
+          <ScrollViewer Grid.Row="1">
+            <ItemsControl ItemsSource="{Binding History}">
+              <ItemsControl.ItemTemplate>
+                <DataTemplate x:DataType="vm:HistoryEntry">
+                  <Button Classes="history"
+                          Tag="{Binding Value}"
+                          Click="History_Click"
+                          ToolTip.Tip="Usar este resultado">
+                    <StackPanel HorizontalAlignment="Right">
+                      <TextBlock Text="{Binding Expression}"
+                                 FontSize="12"
+                                 Foreground="#E8A6C5"
+                                 HorizontalAlignment="Right"
+                                 TextTrimming="CharacterEllipsis" />
+                      <TextBlock Text="{Binding Result}"
+                                 FontSize="19"
+                                 Foreground="#FFF4F8"
+                                 HorizontalAlignment="Right" />
+                    </StackPanel>
+                  </Button>
+                </DataTemplate>
+              </ItemsControl.ItemTemplate>
+            </ItemsControl>
+          </ScrollViewer>
+        </Grid>
+      </Border>
+
+    </Grid>
+  </Border>
 </Window>

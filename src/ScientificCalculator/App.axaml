@@ -1,20 +1,19 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="ScientificCalculator.App"
-             RequestedThemeVariant="Dark">
+             RequestedThemeVariant="Light">
 
   <Application.Styles>
     <FluentTheme />
 
     <Style Selector="Button">
-      <Setter Property="Background" Value="#2E2E2E" />
-      <Setter Property="Foreground" Value="#F5F5F5" />
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="Foreground" Value="#4A1E35" />
       <Setter Property="BorderThickness" Value="0" />
-      <Setter Property="CornerRadius" Value="6" />
-      <Setter Property="Margin" Value="3" />
+      <Setter Property="CornerRadius" Value="4" />
+      <Setter Property="Margin" Value="2" />
       <Setter Property="Padding" Value="0" />
-      <Setter Property="FontSize" Value="20" />
-      <Setter Property="FontWeight" Value="Normal" />
+      <Setter Property="FontSize" Value="18" />
       <Setter Property="HorizontalContentAlignment" Value="Center" />
       <Setter Property="VerticalContentAlignment" Value="Center" />
       <Setter Property="HorizontalAlignment" Value="Stretch" />
@@ -22,116 +21,160 @@
       <Setter Property="Focusable" Value="False" />
     </Style>
 
-    <Style Selector="Button:pointerover /template/ ContentPresenter">
-      <Setter Property="Background" Value="#3C3C3C" />
-    </Style>
-
-    <Style Selector="Button:pressed /template/ ContentPresenter">
-      <Setter Property="Background" Value="#232323" />
-    </Style>
-
-    <Style Selector="Button.sci">
-      <Setter Property="Background" Value="#272727" />
-      <Setter Property="Foreground" Value="#DCDCDC" />
-      <Setter Property="FontSize" Value="15" />
-    </Style>
-
-    <Style Selector="Button.sci:pointerover /template/ ContentPresenter">
-      <Setter Property="Background" Value="#343434" />
-    </Style>
-
-    <Style Selector="Button.sci.active">
-      <Setter Property="Background" Value="#4CC2FF" />
-      <Setter Property="Foreground" Value="#101010" />
-    </Style>
-
-    <Style Selector="Button.sci.active:pointerover /template/ ContentPresenter">
-      <Setter Property="Background" Value="#6ACDFF" />
-    </Style>
-
-    <Style Selector="Button.op">
-      <Setter Property="Background" Value="#333333" />
-      <Setter Property="FontSize" Value="22" />
-    </Style>
-
-    <Style Selector="Button.equals">
-      <Setter Property="Background" Value="#4CC2FF" />
-      <Setter Property="Foreground" Value="#101010" />
-      <Setter Property="FontWeight" Value="SemiBold" />
-      <Setter Property="FontSize" Value="22" />
-    </Style>
-
-    <Style Selector="Button.equals:pointerover /template/ ContentPresenter">
-      <Setter Property="Background" Value="#6ACDFF" />
-    </Style>
-
-    <Style Selector="Button.equals:pressed /template/ ContentPresenter">
-      <Setter Property="Background" Value="#3AA9E6" />
-    </Style>
-
-    <Style Selector="Button.memory">
+    <!-- Teclas estándar: los PNG originales, dibujados 1:1 sobre una rejilla de 90 px -->
+    <Style Selector="Button.key">
       <Setter Property="Background" Value="Transparent" />
-      <Setter Property="Foreground" Value="#CFCFCF" />
-      <Setter Property="FontSize" Value="13" />
-      <Setter Property="Margin" Value="2" />
+      <Setter Property="BorderThickness" Value="0" />
+      <Setter Property="CornerRadius" Value="0" />
+      <Setter Property="Margin" Value="5" />
+      <Setter Property="Padding" Value="0" />
+    </Style>
+
+    <Style Selector="Button.key:pointerover /template/ ContentPresenter">
+      <Setter Property="Background" Value="Transparent" />
+    </Style>
+
+    <Style Selector="Button.key:pressed /template/ ContentPresenter">
+      <Setter Property="Background" Value="Transparent" />
+    </Style>
+
+    <Style Selector="Button.key:pointerover Image">
+      <Setter Property="Opacity" Value="0.9" />
+    </Style>
+
+    <Style Selector="Button.key:pressed Image">
+      <Setter Property="Opacity" Value="0.68" />
+    </Style>
+
+    <!-- Teclas científicas: mismo bisel pixel art que los PNG originales -->
+    <Style Selector="Button.pixel">
+      <Setter Property="Background" Value="#C4598F" />
+      <Setter Property="Foreground" Value="#FFF0F7" />
+      <Setter Property="BorderThickness" Value="0" />
+      <Setter Property="FontFamily" Value="Consolas" />
+      <Setter Property="FontSize" Value="16" />
+      <Setter Property="FontWeight" Value="Bold" />
+      <Setter Property="Margin" Value="5" />
+      <Setter Property="Padding" Value="0" />
+      <Setter Property="Template">
+        <ControlTemplate>
+          <Grid>
+            <Border Background="#73375E" CornerRadius="6" Margin="0,6,0,0" />
+            <Border Background="{TemplateBinding Background}"
+                    CornerRadius="6"
+                    Margin="0,0,0,6">
+              <ContentPresenter Content="{TemplateBinding Content}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                TextElement.Foreground="{TemplateBinding Foreground}" />
+            </Border>
+          </Grid>
+        </ControlTemplate>
+      </Setter>
+    </Style>
+
+    <Style Selector="Button.pixel:pointerover">
+      <Setter Property="Background" Value="#D06AA0" />
+    </Style>
+
+    <Style Selector="Button.pixel:pressed">
+      <Setter Property="Background" Value="#A9447A" />
+    </Style>
+
+    <Style Selector="Button.pixel.active">
+      <Setter Property="Background" Value="#FFC2DD" />
+      <Setter Property="Foreground" Value="#421A2F" />
+    </Style>
+
+    <Style Selector="Button.pixel.active:pointerover">
+      <Setter Property="Background" Value="#FFD4E6" />
+    </Style>
+
+    <!-- Fila de memoria -->
+    <Style Selector="Button.memo">
+      <Setter Property="Background" Value="#F6C3D8" />
+      <Setter Property="Foreground" Value="#5A2440" />
+      <Setter Property="FontSize" Value="12" />
+      <Setter Property="FontWeight" Value="Bold" />
+      <Setter Property="Margin" Value="3,0" />
       <Setter Property="CornerRadius" Value="4" />
     </Style>
 
-    <Style Selector="Button.memory:pointerover /template/ ContentPresenter">
-      <Setter Property="Background" Value="#2B2B2B" />
+    <Style Selector="Button.memo:pointerover /template/ ContentPresenter">
+      <Setter Property="Background" Value="#FBD8E7" />
     </Style>
 
+    <Style Selector="Button.memo:pressed /template/ ContentPresenter">
+      <Setter Property="Background" Value="#EDA6C4" />
+    </Style>
+
+    <!-- DEG / RAD -->
     <Style Selector="Button.pill">
       <Setter Property="Background" Value="Transparent" />
-      <Setter Property="Foreground" Value="#A8A8A8" />
-      <Setter Property="FontSize" Value="12" />
-      <Setter Property="FontWeight" Value="SemiBold" />
-      <Setter Property="Padding" Value="10,4" />
-      <Setter Property="Margin" Value="2,0" />
+      <Setter Property="Foreground" Value="#5A2440" />
+      <Setter Property="BorderBrush" Value="#C4718F" />
+      <Setter Property="BorderThickness" Value="2" />
+      <Setter Property="FontSize" Value="11" />
+      <Setter Property="FontWeight" Value="Bold" />
+      <Setter Property="Width" Value="56" />
+      <Setter Property="Height" Value="26" />
+      <Setter Property="Padding" Value="0" />
+      <Setter Property="Margin" Value="3,0,0,0" />
       <Setter Property="CornerRadius" Value="4" />
+    </Style>
+
+    <Style Selector="Button.pill:pointerover /template/ ContentPresenter">
+      <Setter Property="Background" Value="#F5BBD3" />
     </Style>
 
     <Style Selector="Button.pill.active">
-      <Setter Property="Background" Value="#4CC2FF" />
-      <Setter Property="Foreground" Value="#101010" />
+      <Setter Property="Background" Value="#BF4F8F" />
+      <Setter Property="Foreground" Value="#FFFFFF" />
+      <Setter Property="BorderBrush" Value="#7A2E58" />
     </Style>
 
     <Style Selector="Button.pill.active:pointerover /template/ ContentPresenter">
-      <Setter Property="Background" Value="#6ACDFF" />
+      <Setter Property="Background" Value="#CB5E9B" />
     </Style>
 
     <Style Selector="Button.icon">
       <Setter Property="Background" Value="Transparent" />
-      <Setter Property="Foreground" Value="#DADADA" />
-      <Setter Property="FontSize" Value="17" />
+      <Setter Property="Foreground" Value="#4A1E35" />
+      <Setter Property="FontSize" Value="18" />
       <Setter Property="Width" Value="38" />
       <Setter Property="Height" Value="32" />
       <Setter Property="CornerRadius" Value="4" />
     </Style>
 
     <Style Selector="Button.icon:pointerover /template/ ContentPresenter">
-      <Setter Property="Background" Value="#2E2E2E" />
+      <Setter Property="Background" Value="#F5BBD3" />
     </Style>
 
     <Style Selector="Button.history">
       <Setter Property="Background" Value="Transparent" />
+      <Setter Property="Foreground" Value="#FFFFFF" />
       <Setter Property="Margin" Value="0,1" />
       <Setter Property="Padding" Value="8,6" />
-      <Setter Property="CornerRadius" Value="6" />
+      <Setter Property="CornerRadius" Value="4" />
       <Setter Property="FontSize" Value="14" />
       <Setter Property="HorizontalAlignment" Value="Stretch" />
       <Setter Property="HorizontalContentAlignment" Value="Right" />
     </Style>
 
     <Style Selector="Button.history:pointerover /template/ ContentPresenter">
-      <Setter Property="Background" Value="#303030" />
+      <Setter Property="Background" Value="#3D2130" />
     </Style>
 
     <Style Selector="Button.link">
       <Setter Property="Background" Value="Transparent" />
-      <Setter Property="Foreground" Value="#4CC2FF" />
+      <Setter Property="Foreground" Value="#FFB6D5" />
       <Setter Property="FontSize" Value="12" />
       <Setter Property="Padding" Value="6,2" />
+    </Style>
+
+    <Style Selector="Button.link:pointerover /template/ ContentPresenter">
+      <Setter Property="Background" Value="#3D2130" />
     </Style>
   </Application.Styles>
 </Application>

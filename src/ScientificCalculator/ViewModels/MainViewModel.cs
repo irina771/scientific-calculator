@@ -175,11 +175,73 @@ public partial class MainViewModel : ObservableObject
 
         BeginNewInput(continueFromAnswer: false);
 
+        if (TryWrapTrailingOperand(_input, function, out string wrapped))
+        {
+            _input = wrapped;
+            Refresh();
+            return;
+        }
+
         if (NeedsImplicitMultiplication())
             _input += "×";
 
         _input += function + "(";
         Refresh();
+    }
+
+    /// <summary>
+    /// Si ya hay un operando escrito (por ejemplo 30), la función lo envuelve: sin(30)
+    /// en lugar de 30×sin(. Si no hay operando, la función se abre como prefijo.
+    /// </summary>
+    private static bool TryWrapTrailingOperand(string input, string function, out string result)
+    {
+        result = input;
+
+        if (input.Length == 0)
+            return false;
+
+        int end = input.Length - 1;
+        char last = input[end];
+        int start = end;
+
+        if (last == ')')
+        {
+            int depth = 0;
+            for (int i = end; i >= 0; i--)
+            {
+                if (input[i] == ')') depth++;
+                else if (input[i] == '(')
+                {
+                    depth--;
+                    if (depth == 0)
+                    {
+                        start = i;
+                        break;
+                    }
+                }
+            }
+
+            // Incluye el nombre de la función que precede al paréntesis, si lo hay.
+            while (start > 0 && char.IsLetter(input[start - 1]))
+                start--;
+        }
+        else if (char.IsDigit(last) || last == '.')
+        {
+            while (start > 0 && (char.IsDigit(input[start - 1]) || input[start - 1] == '.'))
+                start--;
+        }
+        else if (last == 'π' || last == 'e')
+        {
+            if (start > 0 && char.IsLetter(input[start - 1]))
+                return false;
+        }
+        else
+        {
+            return false;
+        }
+
+        result = input[..start] + function + "(" + input[start..] + ")";
+        return true;
     }
 
     [RelayCommand]
