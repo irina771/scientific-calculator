@@ -30,6 +30,10 @@ ocurre en esta copia.
   dominio inválido, tangente indefinida, factorial no entero, desbordamiento, etc.
 - Interfaz oscura moderna, redimensionable y con soporte de teclado.
 
+### Historial y memoria
+
+![Historial de operaciones](docs/history.png)
+
 ## Tecnologías
 
 | Componente | Versión |
