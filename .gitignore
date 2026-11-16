@@ -1,0 +1,27 @@
+# Archivos de compilación y salida
+bin/
+obj/
+dist/
+publish/
+*.user
+*.suo
+*.cache
+*.dll
+*.pdb
+*.exe
+*.log
+
+# Visual Studio / Rider / VS Code
+.vs/
+.idea/
+.vscode/
+*.sln.docstates
+
+# Sistema
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Instaladores generados
+installer/Output/
+*.msi

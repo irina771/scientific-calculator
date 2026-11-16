@@ -1,0 +1,207 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:ScientificCalculator.ViewModels"
+        x:Class="ScientificCalculator.Views.MainWindow"
+        x:DataType="vm:MainViewModel"
+        Title="Calculadora científica"
+        Width="700"
+        Height="700"
+        MinWidth="620"
+        MinHeight="620"
+        WindowStartupLocation="CenterScreen"
+        Icon="/Assets/app.ico">
+
+  <Window.Background>
+    <LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%">
+      <GradientStop Color="#1D1D1D" Offset="0" />
+      <GradientStop Color="#141414" Offset="1" />
+    </LinearGradientBrush>
+  </Window.Background>
+
+  <Grid RowDefinitions="Auto,Auto,*">
+
+    <!-- Barra superior -->
+    <Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto,Auto" Margin="14,10,16,2">
+      <Button Classes="icon"
+              Content="☰"
+              Command="{Binding ToggleHistoryCommand}"
+              ToolTip.Tip="Mostrar u ocultar el historial" />
+
+      <TextBlock Grid.Column="1"
+                 Text="Científica"
+                 FontSize="14"
+                 Foreground="#E8E8E8"
+                 VerticalAlignment="Center"
+                 Margin="10,0,0,0" />
+
+      <TextBlock Grid.Column="2"
+                 Text="M"
+                 FontSize="13"
+                 FontWeight="SemiBold"
+                 Foreground="#4CC2FF"
+                 VerticalAlignment="Center"
+                 Margin="0,0,12,0"
+                 IsVisible="{Binding HasMemory}"
+                 ToolTip.Tip="Hay un valor en la memoria" />
+
+      <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center">
+        <Button Classes="pill"
+                Classes.active="{Binding IsDegrees}"
+                Content="DEG"
+                Command="{Binding SetDegreesCommand}"
+                ToolTip.Tip="Grados" />
+        <Button Classes="pill"
+                Classes.active="{Binding IsRadians}"
+                Content="RAD"
+                Command="{Binding SetRadiansCommand}"
+                ToolTip.Tip="Radianes" />
+      </StackPanel>
+    </Grid>
+
+    <!-- Pantalla -->
+    <Border Grid.Row="1"
+            Margin="16,6,16,2"
+            Padding="16,10"
+            Background="#1F1F1F"
+            CornerRadius="8"
+            MinHeight="132">
+      <Grid RowDefinitions="Auto,*">
+        <TextBlock Text="{Binding SecondaryText}"
+                   FontSize="14"
+                   Foreground="#9C9C9C"
+                   HorizontalAlignment="Right"
+                   TextTrimming="CharacterEllipsis"
+                   MinHeight="20" />
+
+        <TextBlock Grid.Row="1"
+                   Text="{Binding DisplayText}"
+                   FontSize="{Binding DisplayFontSize}"
+                   FontWeight="SemiBold"
+                   Foreground="#FFFFFF"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Bottom"
+                   TextTrimming="CharacterEllipsis"
+                   Margin="0,4,0,0" />
+      </Grid>
+    </Border>
+
+    <!-- Teclado -->
+    <Grid Grid.Row="2" Margin="12,4,12,12" RowDefinitions="Auto,*">
+
+      <Grid Grid.Row="0" ColumnDefinitions="*,*,*,*,*" Height="32" Margin="2,0,2,4">
+        <Button Grid.Column="0" Classes="memory" Content="MC" Command="{Binding MemoryClearCommand}" ToolTip.Tip="Borrar memoria" />
+        <Button Grid.Column="1" Classes="memory" Content="MR" Command="{Binding MemoryRecallCommand}" ToolTip.Tip="Recuperar memoria" />
+        <Button Grid.Column="2" Classes="memory" Content="M+" Command="{Binding MemoryAddCommand}" ToolTip.Tip="Sumar a la memoria" />
+        <Button Grid.Column="3" Classes="memory" Content="M−" Command="{Binding MemorySubtractCommand}" ToolTip.Tip="Restar de la memoria" />
+        <Button Grid.Column="4" Classes="memory" Content="MS" Command="{Binding MemoryStoreCommand}" ToolTip.Tip="Guardar en memoria" />
+      </Grid>
+
+      <Grid Grid.Row="1"
+            RowDefinitions="*,*,*,*,*"
+            ColumnDefinitions="*,*,*,*,*,*,*,*">
+
+        <!-- Panel científico -->
+        <Button Grid.Row="0" Grid.Column="0"
+                Classes="sci"
+                Classes.active="{Binding IsSecondActive}"
+                Content="2nd"
+                Command="{Binding ToggleSecondCommand}"
+                ToolTip.Tip="Funciones inversas" />
+        <Button Grid.Row="0" Grid.Column="1" Classes="sci" Content="{Binding SinLabel}" Command="{Binding ScienceCommand}" CommandParameter="sin" />
+        <Button Grid.Row="0" Grid.Column="2" Classes="sci" Content="{Binding CosLabel}" Command="{Binding ScienceCommand}" CommandParameter="cos" />
+        <Button Grid.Row="0" Grid.Column="3" Classes="sci" Content="{Binding TanLabel}" Command="{Binding ScienceCommand}" CommandParameter="tan" />
+
+        <Button Grid.Row="1" Grid.Column="0" Classes="sci" Content="(" Command="{Binding InputOpenParenCommand}" />
+        <Button Grid.Row="1" Grid.Column="1" Classes="sci" Content=")" Command="{Binding InputCloseParenCommand}" />
+        <Button Grid.Row="1" Grid.Column="2" Classes="sci" Content="π" Command="{Binding InputConstantCommand}" CommandParameter="π" />
+        <Button Grid.Row="1" Grid.Column="3" Classes="sci" Content="e" Command="{Binding InputConstantCommand}" CommandParameter="e" />
+
+        <Button Grid.Row="2" Grid.Column="0" Classes="sci" Content="{Binding LogLabel}" Command="{Binding ScienceCommand}" CommandParameter="log" ToolTip.Tip="log: base 10 · 10ˣ con 2nd" />
+        <Button Grid.Row="2" Grid.Column="1" Classes="sci" Content="{Binding LnLabel}" Command="{Binding ScienceCommand}" CommandParameter="ln" ToolTip.Tip="ln: logaritmo natural · eˣ con 2nd" />
+        <Button Grid.Row="2" Grid.Column="2" Classes="sci" Content="{Binding SqrtLabel}" Command="{Binding ScienceCommand}" CommandParameter="sqrt" ToolTip.Tip="Raíz cuadrada · raíz cúbica con 2nd" />
+        <Button Grid.Row="2" Grid.Column="3" Classes="sci" Content="{Binding SquareLabel}" Command="{Binding ScienceCommand}" CommandParameter="square" />
+
+        <Button Grid.Row="3" Grid.Column="0" Classes="sci" Content="xʸ" Command="{Binding InputPowerCommand}" ToolTip.Tip="Potencia" />
+        <Button Grid.Row="3" Grid.Column="1" Classes="sci" Content="n!" Command="{Binding InputFactorialCommand}" ToolTip.Tip="Factorial" />
+        <Button Grid.Row="3" Grid.Column="2" Classes="sci" Content="1/x" Command="{Binding InputReciprocalCommand}" />
+        <Button Grid.Row="3" Grid.Column="3" Classes="sci" Content="%" Command="{Binding InputPercentCommand}" />
+
+        <Button Grid.Row="4" Grid.Column="0" Classes="sci" Content="|x|" Command="{Binding InputAbsCommand}" />
+        <Button Grid.Row="4" Grid.Column="1" Classes="sci" Content="EXP" Command="{Binding InputExpCommand}" ToolTip.Tip="Notación científica" />
+        <Button Grid.Row="4" Grid.Column="2" Classes="sci" Content="ANS" Command="{Binding InputAnsCommand}" ToolTip.Tip="Último resultado" />
+        <Button Grid.Row="4" Grid.Column="3" Classes="sci" Content="←" Command="{Binding BackspaceCommand}" ToolTip.Tip="Borrar un carácter" />
+
+        <!-- Panel estándar -->
+        <Button Grid.Row="0" Grid.Column="4" Content="C" Command="{Binding ClearAllCommand}" ToolTip.Tip="Borrar todo" />
+        <Button Grid.Row="0" Grid.Column="5" Content="CE" Command="{Binding ClearEntryCommand}" ToolTip.Tip="Borrar la entrada" />
+        <Button Grid.Row="0" Grid.Column="6" Content="±" Command="{Binding ToggleSignCommand}" />
+        <Button Grid.Row="0" Grid.Column="7" Classes="op" Content="÷" Command="{Binding InputOperatorCommand}" CommandParameter="/" />
+
+        <Button Grid.Row="1" Grid.Column="4" Content="7" Command="{Binding InputDigitCommand}" CommandParameter="7" />
+        <Button Grid.Row="1" Grid.Column="5" Content="8" Command="{Binding InputDigitCommand}" CommandParameter="8" />
+        <Button Grid.Row="1" Grid.Column="6" Content="9" Command="{Binding InputDigitCommand}" CommandParameter="9" />
+        <Button Grid.Row="1" Grid.Column="7" Classes="op" Content="×" Command="{Binding InputOperatorCommand}" CommandParameter="*" />
+
+        <Button Grid.Row="2" Grid.Column="4" Content="4" Command="{Binding InputDigitCommand}" CommandParameter="4" />
+        <Button Grid.Row="2" Grid.Column="5" Content="5" Command="{Binding InputDigitCommand}" CommandParameter="5" />
+        <Button Grid.Row="2" Grid.Column="6" Content="6" Command="{Binding InputDigitCommand}" CommandParameter="6" />
+        <Button Grid.Row="2" Grid.Column="7" Classes="op" Content="−" Command="{Binding InputOperatorCommand}" CommandParameter="-" />
+
+        <Button Grid.Row="3" Grid.Column="4" Content="1" Command="{Binding InputDigitCommand}" CommandParameter="1" />
+        <Button Grid.Row="3" Grid.Column="5" Content="2" Command="{Binding InputDigitCommand}" CommandParameter="2" />
+        <Button Grid.Row="3" Grid.Column="6" Content="3" Command="{Binding InputDigitCommand}" CommandParameter="3" />
+        <Button Grid.Row="3" Grid.Column="7" Classes="op" Content="+" Command="{Binding InputOperatorCommand}" CommandParameter="+" />
+
+        <Button Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="2" Content="0" Command="{Binding InputDigitCommand}" CommandParameter="0" />
+        <Button Grid.Row="4" Grid.Column="6" Content="," Command="{Binding InputDecimalCommand}" />
+        <Button Grid.Row="4" Grid.Column="7" Classes="equals" Content="=" Command="{Binding CalculateEqualsCommand}" />
+      </Grid>
+    </Grid>
+
+    <!-- Historial (panel superpuesto) -->
+    <Border Grid.Row="1" Grid.RowSpan="2"
+            Width="300"
+            HorizontalAlignment="Left"
+            Margin="14,0,0,14"
+            Padding="8"
+            Background="#F2262626"
+            BorderBrush="#3A3A3A"
+            BorderThickness="1"
+            CornerRadius="10"
+            IsVisible="{Binding IsHistoryOpen}">
+      <Grid RowDefinitions="Auto,*">
+        <Grid Grid.Row="0" ColumnDefinitions="*,Auto,Auto" Margin="4,2,2,6">
+          <TextBlock Text="Historial" FontSize="15" FontWeight="SemiBold" Foreground="#EDEDED" VerticalAlignment="Center" />
+          <Button Grid.Column="1" Classes="link" Content="Borrar" Command="{Binding ClearHistoryCommand}" />
+          <Button Grid.Column="2" Classes="link" Content="✕" Command="{Binding ToggleHistoryCommand}" ToolTip.Tip="Cerrar historial" />
+        </Grid>
+
+        <ScrollViewer Grid.Row="1">
+          <ItemsControl ItemsSource="{Binding History}">
+            <ItemsControl.ItemTemplate>
+              <DataTemplate x:DataType="vm:HistoryEntry">
+                <Button Classes="history"
+                        Tag="{Binding Value}"
+                        Click="History_Click"
+                        ToolTip.Tip="Usar este resultado">
+                  <StackPanel HorizontalAlignment="Right">
+                    <TextBlock Text="{Binding Expression}"
+                               FontSize="12"
+                               Foreground="#8E8E8E"
+                               HorizontalAlignment="Right"
+                               TextTrimming="CharacterEllipsis" />
+                    <TextBlock Text="{Binding Result}"
+                               FontSize="19"
+                               Foreground="#FFFFFF"
+                               HorizontalAlignment="Right" />
+                  </StackPanel>
+                </Button>
+              </DataTemplate>
+            </ItemsControl.ItemTemplate>
+          </ItemsControl>
+        </ScrollViewer>
+      </Grid>
+    </Border>
+
+  </Grid>
+</Window>
