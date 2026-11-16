@@ -58,7 +58,8 @@ Todos los archivos se conservan en `src/ScientificCalculator/Assets/Original/` y
 empaquetan como recursos del ejecutable.
 
 **Recuperados e integrados visiblemente:** las 17 teclas estándar (números,
-operadores, `C`, coma, `=`), el logo `sailor-icon.png` y el icono de la aplicación.
+operadores, `C`, coma, `=`), el logo `sailor-icon.png` y el icono propio de la
+aplicación (`Assets/app.ico`, se mantiene en lugar del logo de Avalonia).
 Las teclas científicas, de memoria y `CE`/`±`/`←` usan un bisel equivalente dibujado
 en XAML (mismo magenta, sombra inferior y tipografía monoespaciada) para poder mostrar
 textos dinámicos como `sin⁻¹` o `10ˣ`.
