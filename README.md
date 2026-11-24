@@ -31,12 +31,31 @@ ocurre en esta copia.
 - Manejo de errores matemáticos con mensajes claros: división entre cero,
   dominio inválido, tangente indefinida, factorial no entero, desbordamiento, etc.
 - Interfaz pastel pixel art basada en los recursos gráficos originales,
-  redimensionable, compacta y con barra de título propia en la paleta
-  (`#7A3157`) en lugar de la blanca de Windows.
+  redimensionable y con ventana compacta de 447×680 px.
 
 ### Historial y memoria
 
 ![Historial de operaciones](docs/history.png)
+
+## Distribución tipo Windows Calculator
+
+La ventana mide **447×680 px**, del tamaño de la calculadora de Windows en
+modo científico (measureado con UIA: ventana de 447×680, botones numéricos
+aproximadamente de 52×44).
+
+Estructura de la calculadora:
+
+- **Pantalla de resultados** (línea superior).
+- **Fila de memoria** `MC MR M+ M− MS` centrada.
+- **Teclado**: 8 columnas × 5 filas en un `Viewbox` de 432×240 px:
+  - Panel científico (cols 0-3): `2nd`, `sin`, `cos`, `tan`, `(`, `)`, `π`, `e`,
+    `log`, `ln`, `√`, `x²`, `xʸ`, `n!`, `1/x`, `%`, `|x|`, `EXP`, `ANS`, `HIST`.
+  - Panel estándar (cols 4-7): `C`, `÷`, `7`, `×`, `8`, `,`, `9`, `←`,
+    `4`, `5`, `6`, `−`, `1`, `2`, `3`, `+`, `0`, `×`, `CE`, `=`.
+- **DEG/RAD** y el botón de historial en la cabecera.
+
+Todas las funciones de antes se conservan; añadimos algunas funciones adicionales
+para poblar las columnas vacías (`EXP`, `ANS`, `HIST`, `CE`).
 
 ## Identidad visual y assets originales
 
@@ -47,8 +66,9 @@ La interfaz recupera el pixel art del proyecto original (rosa `#FFAACB`, bordes
 
 | Asset | Tamaño | Uso actual |
 | --- | --- | --- |
-| `normal_0..9_btn.png` (10) | 80×80 | Teclas numéricas, dibujadas 1:1 en la rejilla |
+| `normal_0..9_btn.png` (10) | 80×80 | Teclas numéricas, dibujadas 1:1 en celdas de 52×44 |
 | `normal_+ - x divide = c ,_btn.png` (7) | 80×80 | Operadores, `C`, coma y `=` |
+| `pressed_*_btn.png` (19) | 80×80 | Pulsación de las teclas estándar (se recuperaron en `Assets/Original/Pressed/`) |
 | `sailor-icon.png` | 448×346 | Logo de la cabecera |
 | `fondo_calculadora.png` | 370×605 | Referencia de paleta del cuerpo |
 | `pantalla.png` | 265×105 | Referencia de paleta del bisel de la pantalla |
