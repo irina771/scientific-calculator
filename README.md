@@ -60,7 +60,8 @@ para poblar las columnas vacías (`EXP`, `ANS`, `HIST`, `CE`).
 ## Identidad visual y assets originales
 
 La interfaz recupera el pixel art del proyecto original (rosa `#FFAACB`, bordes
-`#D980A2` y teclas magenta `#BF4F8F`) y lo integra en los controles reales de Avalonia.
+`#D980A2` y teclas magenta `#BF4F8F`) y lo integra en los controles reales de Avalonia,
+con la paleta kawaii Strawberry Milk (`#FDCDEA`, `#FDB0DF`, `#401E34`, `#6F3563`).
 
 **Assets encontrados en el repositorio original** (carpeta `Assets/`):
 
@@ -74,6 +75,8 @@ La interfaz recupera el pixel art del proyecto original (rosa `#FFAACB`, bordes
 | `pantalla.png` | 265×105 | Referencia de paleta del bisel de la pantalla |
 | `avalonia-logo.png` / `.ico` | 770×720 | Branding del framework, no del proyecto |
 | `normal_est_btn.png`, `normal_hex_btn.png` | 105×80 | Botones de otro modo, obsoletos aquí |
+| `fondo-export.png` | 1600×2600 | Fondo rosa y crema diseñado en Aseprite (kawaii, Added Wed Nov 2026) |
+| `pantalla-export.png` | 1320×410 | Pantalla de resultados diseñada en Aseprite (colores oscuros de fondo de pantalla) |
 
 Todos los archivos se conservan en `src/ScientificCalculator/Assets/Original/` y se
 empaquetan como recursos del ejecutable.

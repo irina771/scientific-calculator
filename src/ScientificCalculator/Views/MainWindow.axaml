@@ -10,7 +10,7 @@
         MinHeight="640"
         WindowStartupLocation="CenterScreen"
         Icon="/Assets/app.ico"
-        Background="#7A3157"
+        Background="#FDCDEA"
         ExtendClientAreaToDecorationsHint="True"
         ExtendClientAreaTitleBarHeightHint="36"
         RenderOptions.BitmapInterpolationMode="None">
@@ -39,14 +39,16 @@
     </Grid>
 
     <Border Grid.Row="1" Margin="14,8,14,12"
-            Background="#FFAACB"
-            BorderBrush="#D980A2"
+            BorderBrush="#FDB0DF"
             BorderThickness="3"
-            CornerRadius="10"
+            CornerRadius="12"
             ClipToBounds="True"
-            BoxShadow="0 12 28 0 #40000000">
+            BoxShadow="0 10 26 0 #46FDB0DF">
+      <Border.Background>
+        <ImageBrush Source="/Assets/Original/fondo-export.png" Stretch="Fill" />
+      </Border.Background>
 
-      <Grid Margin="12,12,12,12" RowDefinitions="Auto,Auto,Auto,*">
+      <Grid Margin="9,9,9,4" RowDefinitions="Auto,Auto,Auto,*">
 
         <!-- Cabecera -->
         <Grid Grid.Row="0" ColumnDefinitions="Auto,Auto,*,Auto" Height="40">
@@ -79,16 +81,14 @@
 
         <!-- Pantalla -->
         <Grid Grid.Row="1" Height="110" Margin="0,6,0,6">
-          <Border Background="#2A1520"
-                  BorderBrush="#FFE7ED"
-                  BorderThickness="4"
-                  CornerRadius="2"
-                  BoxShadow="0 0 0 3 #D980A2" />
+          <Image Source="/Assets/Original/pantalla-export.png"
+                 Stretch="Fill"
+                 IsHitTestVisible="False" />
 
-          <Grid Margin="14,8,14,8" RowDefinitions="Auto,*">
+          <Grid Margin="16,6,16,6" RowDefinitions="Auto,*">
             <TextBlock Text="{Binding SecondaryText}"
                        FontSize="11"
-                       Foreground="#E8A6C5"
+                       Foreground="#401E34"
                        HorizontalAlignment="Right"
                        TextTrimming="CharacterEllipsis"
                        MinHeight="16" />
@@ -97,11 +97,11 @@
                        Text="{Binding DisplayText}"
                        FontSize="{Binding DisplayFontSize}"
                        FontWeight="SemiBold"
-                       Foreground="#FFF4F8"
+                       Foreground="#401E34"
                        HorizontalAlignment="Right"
                        VerticalAlignment="Bottom"
                        TextTrimming="CharacterEllipsis"
-                       Margin="0,3,0,0" />
+                       Margin="0,2,0,0" />
           </Grid>
         </Grid>
 
