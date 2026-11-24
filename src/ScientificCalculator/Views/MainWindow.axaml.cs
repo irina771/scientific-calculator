@@ -2,15 +2,45 @@ using System;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Avalonia.Threading;
+using Avalonia.VisualTree;
 using ScientificCalculator.ViewModels;
 
 namespace ScientificCalculator.Views;
 
 public partial class MainWindow : Window
 {
+    private DispatcherTimer? _pressedTimer;
+
     public MainWindow()
     {
         InitializeComponent();
+    }
+
+    /// <summary>
+    /// Al presionar un botón con imagen, muestra la variante "pressed" durante 1 segundo.
+    /// </summary>
+    private void Keypad_PointerPressed(object? sender, PointerPressedEventArgs e)
+    {
+        if (!e.GetCurrentPoint(this).Properties.IsLeftButtonPressed)
+            return;
+
+        if (e.Source is not Button button || button.Content is not Grid grid)
+            return;
+
+        foreach (var image in grid.Children.OfType<Image>())
+        {
+            if (!image.Classes.Contains("pressed"))
+                continue;
+
+            image.Opacity = 1;
+            _pressedTimer?.Stop();
+
+            var timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
+            timer.Tick += (_, _) => image.Opacity = 0;
+            timer.Start();
+            _pressedTimer = timer;
+        }
     }
 
     private void History_Click(object? sender, RoutedEventArgs e)
