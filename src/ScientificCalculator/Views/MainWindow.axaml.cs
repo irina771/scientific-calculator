@@ -30,14 +30,23 @@ public partial class MainWindow : Window
 
         foreach (var image in grid.Children.OfType<Image>())
         {
-            if (!image.Classes.Contains("pressed"))
+            var isPressed = image.Classes.Contains("pressed");
+            image.Opacity = isPressed ? 1 : 0;
+
+            if (!isPressed)
                 continue;
 
-            image.Opacity = 1;
             _pressedTimer?.Stop();
 
             var timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
-            timer.Tick += (_, _) => image.Opacity = 0;
+            timer.Tick += (_, _) =>
+            {
+                image.Opacity = 0;
+                foreach (var other in grid.Children.OfType<Image>())
+                    if (!other.Classes.Contains("pressed"))
+                        other.Opacity = 1;
+            };
+
             timer.Start();
             _pressedTimer = timer;
         }

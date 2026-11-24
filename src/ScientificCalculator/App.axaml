@@ -44,10 +44,6 @@
       <Setter Property="Opacity" Value="0" />
     </Style>
 
-    <Style Selector="Button.key:pointerover Image">
-      <Setter Property="Opacity" Value="0.9" />
-    </Style>
-
     <!-- Teclas científicas: mismo bisel pixel art que los PNG originales -->
     <Style Selector="Button.pixel">
       <Setter Property="Background" Value="#FDB0DF" />
