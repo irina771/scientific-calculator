@@ -4,25 +4,50 @@
         x:Class="ScientificCalculator.Views.MainWindow"
         x:DataType="vm:MainViewModel"
         Title="Calculadora científica"
-        Width="900"
-        Height="830"
-        MinWidth="800"
-        MinHeight="740"
+        Width="600"
+        Height="660"
+        MinWidth="560"
+        MinHeight="620"
         WindowStartupLocation="CenterScreen"
         Icon="/Assets/app.ico"
         Background="#7A3157"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaTitleBarHeightHint="36"
         RenderOptions.BitmapInterpolationMode="None">
 
-  <!-- Cuerpo de la calculadora con la paleta pixel art original -->
-  <Border Margin="12"
-          Background="#FFAACB"
-          BorderBrush="#D980A2"
-          BorderThickness="3"
-          CornerRadius="10"
-          ClipToBounds="True"
-          BoxShadow="0 12 28 0 #40000000">
+  <Grid RowDefinitions="36,*">
 
-    <Grid Margin="20,16,20,16" RowDefinitions="Auto,Auto,Auto,*">
+    <!-- Barra de título propia (evita la franja blanca del sistema) -->
+    <Grid Grid.Row="0"
+          Background="#7A3157"
+          ColumnDefinitions="Auto,Auto,*,Auto"
+          PointerPressed="TitleBar_PointerPressed">
+      <Image Grid.Column="0"
+             Source="/Assets/Original/sailor-icon.png"
+             Width="22"
+             Height="18"
+             Stretch="Uniform"
+             Margin="10,0,8,0"
+             VerticalAlignment="Center" />
+
+      <TextBlock Grid.Column="1"
+                 Text="Calculadora científica"
+                 FontSize="12"
+                 FontWeight="SemiBold"
+                 Foreground="#FFD9E8"
+                 VerticalAlignment="Center" />
+    </Grid>
+
+    <!-- Cuerpo de la calculadora con la paleta pixel art original -->
+    <Border Grid.Row="1" Margin="12,0,12,12"
+            Background="#FFAACB"
+            BorderBrush="#D980A2"
+            BorderThickness="3"
+            CornerRadius="10"
+            ClipToBounds="True"
+            BoxShadow="0 12 28 0 #40000000">
+
+    <Grid Margin="18,12,18,14" RowDefinitions="Auto,Auto,Auto,*">
 
       <!-- Cabecera -->
       <Grid Grid.Row="0" ColumnDefinitions="Auto,Auto,*,Auto" Height="44">
@@ -63,15 +88,15 @@
 
       <!-- Pantalla: bisel escalable reconstruido con la paleta de pantalla.png -->
       <Grid Grid.Row="1"
-            Height="190"
-            Margin="0,10,0,10">
+            Height="140"
+            Margin="0,8,0,8">
         <Border Background="#2A1520"
                 BorderBrush="#FFE7ED"
-                BorderThickness="5"
+                BorderThickness="4"
                 CornerRadius="2"
                 BoxShadow="0 0 0 3 #D980A2" />
 
-        <Grid Margin="26,14,26,14" RowDefinitions="Auto,*">
+        <Grid Margin="22,10,22,10" RowDefinitions="Auto,*">
           <TextBlock Text="{Binding SecondaryText}"
                      FontSize="13"
                      Foreground="#E8A6C5"
@@ -94,7 +119,7 @@
       <!-- Memoria -->
       <UniformGrid Grid.Row="2"
                    Columns="5"
-                   Width="470"
+                   Width="400"
                    Height="30"
                    HorizontalAlignment="Center"
                    Margin="0,0,0,4">
@@ -256,4 +281,5 @@
 
     </Grid>
   </Border>
+  </Grid>
 </Window>

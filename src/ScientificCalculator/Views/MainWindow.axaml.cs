@@ -19,6 +19,33 @@ public partial class MainWindow : Window
             viewModel.UseHistoryValue(value);
     }
 
+    private void TitleBar_PointerPressed(object? sender, PointerPressedEventArgs e)
+    {
+        if (!e.GetCurrentPoint(this).Properties.IsLeftButtonPressed)
+            return;
+
+        if (e.ClickCount == 2)
+        {
+            WindowState = WindowState == WindowState.Maximized
+                ? WindowState.Normal
+                : WindowState.Maximized;
+
+            return;
+        }
+
+        BeginMoveDrag(e);
+    }
+
+    private void Minimize_Click(object? sender, RoutedEventArgs e) =>
+        WindowState = WindowState.Minimized;
+
+    private void Maximize_Click(object? sender, RoutedEventArgs e) =>
+        WindowState = WindowState == WindowState.Maximized
+            ? WindowState.Normal
+            : WindowState.Maximized;
+
+    private void Close_Click(object? sender, RoutedEventArgs e) => Close();
+
     protected override void OnTextInput(TextInputEventArgs e)
     {
         base.OnTextInput(e);

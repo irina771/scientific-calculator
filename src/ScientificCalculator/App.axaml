@@ -176,5 +176,32 @@
     <Style Selector="Button.link:pointerover /template/ ContentPresenter">
       <Setter Property="Background" Value="#3D2130" />
     </Style>
+
+    <!-- Barra de título propia -->
+    <Style Selector="Button.caption">
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="Foreground" Value="#FFD9E8" />
+      <Setter Property="FontFamily" Value="Segoe UI" />
+      <Setter Property="FontSize" Value="12" />
+      <Setter Property="Width" Value="42" />
+      <Setter Property="Height" Value="30" />
+      <Setter Property="Margin" Value="0" />
+      <Setter Property="Padding" Value="0" />
+      <Setter Property="CornerRadius" Value="0" />
+      <Setter Property="HorizontalAlignment" Value="Right" />
+      <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <Style Selector="Button.caption:pointerover /template/ ContentPresenter">
+      <Setter Property="Background" Value="#9B4468" />
+    </Style>
+
+    <Style Selector="Button.caption:pressed /template/ ContentPresenter">
+      <Setter Property="Background" Value="#B04F76" />
+    </Style>
+
+    <Style Selector="Button.caption.close:pointerover /template/ ContentPresenter">
+      <Setter Property="Background" Value="#C93B5B" />
+    </Style>
   </Application.Styles>
 </Application>

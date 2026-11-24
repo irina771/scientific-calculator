@@ -31,7 +31,8 @@ ocurre en esta copia.
 - Manejo de errores matemáticos con mensajes claros: división entre cero,
   dominio inválido, tangente indefinida, factorial no entero, desbordamiento, etc.
 - Interfaz pastel pixel art basada en los recursos gráficos originales,
-  redimensionable y con soporte de teclado.
+  redimensionable, compacta y con barra de título propia en la paleta
+  (`#7A3157`) en lugar de la blanca de Windows.
 
 ### Historial y memoria
 
