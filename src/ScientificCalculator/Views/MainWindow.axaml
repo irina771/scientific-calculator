@@ -21,7 +21,7 @@
 
   <!-- Marco exterior kawaii con esquinas redondeadas y borde pastel -->
   <Border Background="#FFB8DC"
-          BorderBrush="#7B2856"
+          BorderBrush="#FFA8D2"
           BorderThickness="2"
           CornerRadius="16"
           ClipToBounds="True"
@@ -248,12 +248,10 @@
                   <Image Classes="pressed" Source="/Assets/Original/pressed_x2_btn-export.png" />
                 </Grid>
               </Button>
-              <Button Grid.Row="1" Grid.Column="1" Classes="pixel" Content="1/x"
-                      Command="{Binding InputReciprocalCommand}" AutomationProperties.Name="reciproco" ToolTip.Tip="Recíproco" />
-              <Button Grid.Row="1" Grid.Column="2" Classes="key" AutomationProperties.Name="valor_absoluto" ToolTip.Tip="Valor absoluto">
+              <Button Grid.Row="1" Grid.Column="1" Classes="key" AutomationProperties.Name="reciproco" ToolTip.Tip="RecÃ­proco">
                 <Grid>
-                  <Image Classes="normal" Source="/Assets/Original/normal_valor absoluto_btn-export.png" />
-                  <Image Classes="pressed" Source="/Assets/Original/pressed_valor absoluto_btn-export.png" />
+                  <Image Classes="normal" Source="/Assets/Original/normal_1x_btn-export.png" />
+                  <Image Classes="pressed" Source="/Assets/Original/pressed_1x_btn-export.png" />
                 </Grid>
               </Button>
               <Button Grid.Row="1" Grid.Column="3" Classes="key" AutomationProperties.Name="EXP" ToolTip.Tip="Notación científica">
