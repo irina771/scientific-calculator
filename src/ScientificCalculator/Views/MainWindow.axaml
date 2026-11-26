@@ -1,4 +1,4 @@
-<Window xmlns="https://github.com/avaloniaui"
+﻿<Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:ScientificCalculator.ViewModels"
         x:Class="ScientificCalculator.Views.MainWindow"
@@ -12,7 +12,7 @@
         MaxHeight="690"
         CanResize="False"
         WindowStartupLocation="CenterScreen"
-        Icon="/Assets/Original/icon_calculator.png"
+        Icon="/Assets/Original/icon_calculator-export.png"
         Background="Transparent"
         TransparencyLevelHint="Transparent"
         ExtendClientAreaToDecorationsHint="True"
@@ -36,9 +36,9 @@
             PointerPressed="TitleBar_PointerPressed"
             Height="36">
         <Image Grid.Column="0"
-               Source="/Assets/Original/icon.png"
-               Width="22"
-               Height="18"
+               Source="/Assets/Original/icon_calculator-export.png"
+               Width="30"
+               Height="24"
                Stretch="Uniform"
                Margin="12,0,8,0"
                VerticalAlignment="Center" />
@@ -339,10 +339,11 @@
               </Button>
 
               <!-- Fila 5 -->
-              <Button Grid.Row="4" Grid.Column="0" Classes="key" AutomationProperties.Name="10x" ToolTip.Tip="10 elevado al exponente">
+              <Button Grid.Row="4" Grid.Column="0" Classes="key" AutomationProperties.Name="1x"
+                      Command="{Binding InputFunctionCommand}" CommandParameter="10^" ToolTip.Tip="10 elevado al exponente">
                 <Grid>
-                  <Image Classes="normal" Source="/Assets/Original/normal_10x_btn-export.png" />
-                  <Image Classes="pressed" Source="/Assets/Original/pressed_10x_btn-export.png" />
+                  <Image Classes="normal" Source="/Assets/Original/normal_1x_btn-export.png" />
+                  <Image Classes="pressed" Source="/Assets/Original/pressed_1x_btn-export.png" />
                 </Grid>
               </Button>
               <Button Grid.Row="4" Grid.Column="1" Classes="key" AutomationProperties.Name="4"
