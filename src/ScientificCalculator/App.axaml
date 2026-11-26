@@ -21,15 +21,13 @@
       <Setter Property="Focusable" Value="False" />
     </Style>
 
-    <!-- Teclas estándar: PNGs originales sobre celdas de 62x63 -->
+    <!-- Teclas estándar: PNGs originales -->
     <Style Selector="Button.key">
       <Setter Property="Background" Value="Transparent" />
       <Setter Property="BorderThickness" Value="0" />
       <Setter Property="CornerRadius" Value="0" />
-      <Setter Property="Margin" Value="1" />
+      <Setter Property="Margin" Value="0" />
       <Setter Property="Padding" Value="0" />
-      <Setter Property="Width" Value="62" />
-      <Setter Property="Height" Value="63" />
       <Setter Property="HorizontalContentAlignment" Value="Center" />
       <Setter Property="VerticalContentAlignment" Value="Center" />
     </Style>
@@ -44,8 +42,6 @@
 
     <Style Selector="Button.key Image">
       <Setter Property="Stretch" Value="Fill" />
-      <Setter Property="Width" Value="62" />
-      <Setter Property="Height" Value="62" />
     </Style>
 
     <Style Selector="Button.key Image.normal">
@@ -137,7 +133,7 @@
 
     <!-- DEG / RAD pills -->
     <Style Selector="Button.pill">
-      <Setter Property="Background" Value="#FFF2F8" />
+      <!-- <Setter Property="Background" Value="#FFF2F8" /> -->
       <Setter Property="Foreground" Value="#52183B" />
       <Setter Property="BorderBrush" Value="#FFAED5" />
       <Setter Property="BorderThickness" Value="1.5" />
