@@ -1,4 +1,4 @@
-﻿<Application xmlns="https://github.com/avaloniaui"
+<Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="ScientificCalculator.App"
              RequestedThemeVariant="Light">
@@ -21,7 +21,7 @@
       <Setter Property="Focusable" Value="False" />
     </Style>
 
-    <!-- Teclas estándar: PNGs originales sobre una cuadrícula de 5x7 celdas de 62x63 -->
+    <!-- Teclas estándar: PNGs originales sobre celdas de 62x63 -->
     <Style Selector="Button.key">
       <Setter Property="Background" Value="Transparent" />
       <Setter Property="BorderThickness" Value="0" />
@@ -34,34 +34,52 @@
       <Setter Property="VerticalContentAlignment" Value="Center" />
     </Style>
 
+    <Style Selector="Button.key:pointerover /template/ ContentPresenter">
+      <Setter Property="Background" Value="Transparent" />
+    </Style>
+
+    <Style Selector="Button.key:pressed /template/ ContentPresenter">
+      <Setter Property="Background" Value="Transparent" />
+    </Style>
+
     <Style Selector="Button.key Image">
       <Setter Property="Stretch" Value="Fill" />
       <Setter Property="Width" Value="62" />
       <Setter Property="Height" Value="62" />
     </Style>
 
+    <Style Selector="Button.key Image.normal">
+      <Setter Property="Opacity" Value="1" />
+    </Style>
+
     <Style Selector="Button.key Image.pressed">
       <Setter Property="Opacity" Value="0" />
     </Style>
 
-    <!-- Teclas científicas: mismo bisel pixel art que los PNG originales -->
+    <!-- Teclas científicas: estilo kawaii en rosa pastel con bisel y sombra 3D -->
     <Style Selector="Button.pixel">
-      <Setter Property="Background" Value="#FDB0DF" />
-      <Setter Property="Foreground" Value="#401E34" />
+      <Setter Property="Background" Value="#D4558F" />
+      <Setter Property="Foreground" Value="#FFFFFF" />
       <Setter Property="BorderThickness" Value="0" />
-      <Setter Property="FontFamily" Value="Consolas" />
-      <Setter Property="FontSize" Value="12" />
+      <Setter Property="FontFamily" Value="Segoe UI, Consolas, sans-serif" />
+      <Setter Property="FontSize" Value="13" />
       <Setter Property="FontWeight" Value="Bold" />
       <Setter Property="Margin" Value="2" />
       <Setter Property="Padding" Value="0" />
-      <Setter Property="Height" Value="62" />
+      <Setter Property="Width" Value="58" />
+      <Setter Property="Height" Value="59" />
       <Setter Property="Template">
         <ControlTemplate>
           <Grid>
-            <Border Background="#6F3563" CornerRadius="6" Margin="0,6,0,0" />
-            <Border Background="{TemplateBinding Background}"
-                    CornerRadius="6"
-                    Margin="0,0,0,6">
+            <!-- Sombra 3D inferior tipo pixel kawaii -->
+            <Border Background="#681840" CornerRadius="8" Margin="0,5,0,0" />
+            <!-- Cara del botón con highlight superior -->
+            <Border x:Name="Face"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="#FFA3CD"
+                    BorderThickness="1,1,1,0"
+                    CornerRadius="8"
+                    Margin="0,0,0,5">
               <ContentPresenter Content="{TemplateBinding Content}"
                                 ContentTemplate="{TemplateBinding ContentTemplate}"
                                 HorizontalContentAlignment="Center"
@@ -74,80 +92,89 @@
     </Style>
 
     <Style Selector="Button.pixel:pointerover">
-      <Setter Property="Background" Value="#FFC3D7" />
+      <Setter Property="Background" Value="#E0639D" />
     </Style>
 
-    <Style Selector="Button.pixel:pressed">
-      <Setter Property="Background" Value="#F9A4C9" />
+    <Style Selector="Button.pixel:pressed, Button.pixel.is-pressed">
+      <Setter Property="Background" Value="#9E3367" />
+    </Style>
+
+    <Style Selector="Button.pixel:pressed /template/ Border#Face, Button.pixel.is-pressed /template/ Border#Face">
+      <Setter Property="Margin" Value="0,4,0,1" />
     </Style>
 
     <Style Selector="Button.pixel.active">
-      <Setter Property="Background" Value="#FFD1E8" />
-      <Setter Property="Foreground" Value="#401E34" />
+      <Setter Property="Background" Value="#FF88C2" />
+      <Setter Property="Foreground" Value="#52183B" />
     </Style>
 
     <Style Selector="Button.pixel.active:pointerover">
-      <Setter Property="Background" Value="#FFE0F2" />
+      <Setter Property="Background" Value="#FFA2D1" />
     </Style>
 
-    <!-- Fila de memoria -->
+    <!-- Fila de memoria: botoncitos píldora en crema/rosa pastel -->
     <Style Selector="Button.memo">
-      <Setter Property="Background" Value="#FDCDEA" />
-      <Setter Property="Foreground" Value="#401E34" />
-      <Setter Property="FontSize" Value="10" />
+      <Setter Property="Background" Value="#FFF5FA" />
+      <Setter Property="Foreground" Value="#52183B" />
+      <Setter Property="BorderBrush" Value="#FFAED5" />
+      <Setter Property="BorderThickness" Value="1.5" />
+      <Setter Property="FontSize" Value="11" />
       <Setter Property="FontWeight" Value="Bold" />
-      <Setter Property="Margin" Value="0" />
-      <Setter Property="CornerRadius" Value="4" />
+      <Setter Property="Margin" Value="2,0" />
+      <Setter Property="CornerRadius" Value="8" />
+      <Setter Property="Height" Value="26" />
     </Style>
 
     <Style Selector="Button.memo:pointerover /template/ ContentPresenter">
-      <Setter Property="Background" Value="#FFE0F2" />
+      <Setter Property="Background" Value="#FFFFFF" />
+      <Setter Property="BorderBrush" Value="#FF88C2" />
     </Style>
 
-    <Style Selector="Button.memo:pressed /template/ ContentPresenter">
-      <Setter Property="Background" Value="#F9A4C9" />
+    <Style Selector="Button.memo:pressed /template/ ContentPresenter, Button.memo.is-pressed /template/ ContentPresenter">
+      <Setter Property="Background" Value="#FFD1E8" />
+      <Setter Property="BorderBrush" Value="#DE5D97" />
     </Style>
 
-    <!-- DEG / RAD -->
+    <!-- DEG / RAD pills -->
     <Style Selector="Button.pill">
-      <Setter Property="Background" Value="Transparent" />
-      <Setter Property="Foreground" Value="#401E34" />
-      <Setter Property="BorderBrush" Value="#6F3563" />
-      <Setter Property="BorderThickness" Value="2" />
+      <Setter Property="Background" Value="#FFF2F8" />
+      <Setter Property="Foreground" Value="#52183B" />
+      <Setter Property="BorderBrush" Value="#FFAED5" />
+      <Setter Property="BorderThickness" Value="1.5" />
       <Setter Property="FontSize" Value="11" />
       <Setter Property="FontWeight" Value="Bold" />
-      <Setter Property="Width" Value="56" />
+      <Setter Property="Width" Value="52" />
       <Setter Property="Height" Value="26" />
       <Setter Property="Padding" Value="0" />
-      <Setter Property="Margin" Value="3,0,0,0" />
-      <Setter Property="CornerRadius" Value="4" />
+      <Setter Property="Margin" Value="1,0" />
+      <Setter Property="CornerRadius" Value="12" />
     </Style>
 
     <Style Selector="Button.pill:pointerover /template/ ContentPresenter">
-      <Setter Property="Background" Value="#F5BBD3" />
+      <Setter Property="Background" Value="#FFE4F2" />
     </Style>
 
     <Style Selector="Button.pill.active">
-      <Setter Property="Background" Value="#FDB0DF" />
+      <Setter Property="Background" Value="#D4428E" />
       <Setter Property="Foreground" Value="#FFFFFF" />
-      <Setter Property="BorderBrush" Value="#401E34" />
+      <Setter Property="BorderBrush" Value="#C2337E" />
     </Style>
 
     <Style Selector="Button.pill.active:pointerover /template/ ContentPresenter">
-      <Setter Property="Background" Value="#FFC3D7" />
+      <Setter Property="Background" Value="#E2549F" />
     </Style>
 
     <Style Selector="Button.icon">
       <Setter Property="Background" Value="Transparent" />
-      <Setter Property="Foreground" Value="#4A1E35" />
+      <Setter Property="Foreground" Value="#52183B" />
       <Setter Property="FontSize" Value="18" />
-      <Setter Property="Width" Value="34" />
-      <Setter Property="Height" Value="30" />
-      <Setter Property="CornerRadius" Value="4" />
+      <Setter Property="Width" Value="32" />
+      <Setter Property="Height" Value="28" />
+      <Setter Property="CornerRadius" Value="6" />
     </Style>
 
     <Style Selector="Button.icon:pointerover /template/ ContentPresenter">
-      <Setter Property="Background" Value="#F5BBD3" />
+      <Setter Property="Background" Value="#FFE0F0" />
     </Style>
 
     <Style Selector="Button.history">
@@ -155,44 +182,46 @@
       <Setter Property="Foreground" Value="#FFFFFF" />
       <Setter Property="Margin" Value="0,1" />
       <Setter Property="Padding" Value="8,6" />
-      <Setter Property="CornerRadius" Value="4" />
+      <Setter Property="CornerRadius" Value="6" />
       <Setter Property="FontSize" Value="14" />
       <Setter Property="HorizontalAlignment" Value="Stretch" />
       <Setter Property="HorizontalContentAlignment" Value="Right" />
     </Style>
 
     <Style Selector="Button.history:pointerover /template/ ContentPresenter">
-      <Setter Property="Background" Value="#3D2130" />
+      <Setter Property="Background" Value="#451B32" />
     </Style>
 
     <Style Selector="Button.link">
       <Setter Property="Background" Value="Transparent" />
-      <Setter Property="Foreground" Value="#FFB6D5" />
+      <Setter Property="Foreground" Value="#FFAED5" />
       <Setter Property="FontSize" Value="12" />
       <Setter Property="Padding" Value="6,2" />
     </Style>
 
     <Style Selector="Button.link:pointerover /template/ ContentPresenter">
-      <Setter Property="Background" Value="#3D2130" />
+      <Setter Property="Background" Value="#451B32" />
     </Style>
 
-    <!-- Barra de título propia (evita la franja blanca del sistema) -->
+    <!-- Botones de la barra de título kawaii -->
     <Style Selector="Button.caption">
       <Setter Property="Background" Value="Transparent" />
-      <Setter Property="Foreground" Value="#FFD9E8" />
+      <Setter Property="Foreground" Value="#52183B" />
       <Setter Property="FontFamily" Value="Segoe UI" />
       <Setter Property="FontSize" Value="12" />
-      <Setter Property="Width" Value="42" />
-      <Setter Property="Height" Value="30" />
-      <Setter Property="Margin" Value="0" />
+      <Setter Property="FontWeight" Value="Bold" />
+      <Setter Property="Width" Value="28" />
+      <Setter Property="Height" Value="22" />
+      <Setter Property="Margin" Value="1,0" />
       <Setter Property="Padding" Value="0" />
-      <Setter Property="CornerRadius" Value="0" />
-      <Setter Property="HorizontalAlignment" Value="Right" />
-      <Setter Property="VerticalAlignment" Value="Center" />
+      <Setter Property="CornerRadius" Value="10" />
+      <Setter Property="HorizontalContentAlignment" Value="Center" />
+      <Setter Property="VerticalContentAlignment" Value="Center" />
     </Style>
 
     <Style Selector="Button.caption:pointerover /template/ ContentPresenter">
-      <Setter Property="Background" Value="#9B4468" />
+      <Setter Property="Background" Value="#FF9EC8" />
+      <Setter Property="Foreground" Value="#FFFFFF" />
     </Style>
   </Application.Styles>
 </Application>

@@ -75,6 +75,9 @@ con la paleta kawaii Strawberry Milk (`#FDCDEA`, `#FDB0DF`, `#401E34`, `#6F3563`
 | `pantalla.png` | 265×105 | Referencia de paleta del bisel de la pantalla |
 | `avalonia-logo.png` / `.ico` | 770×720 | Branding del framework, no del proyecto |
 | `normal_est_btn.png`, `normal_hex_btn.png` | 105×80 | Botones de otro modo, obsoletos aquí |
+| `icon_calculator.png` | 80×80 | Icono de la calculadora para la barra de título (Aseprite) |
+| `normal_2nd_btn-export.png` | 80×80 | Botón 2nd exportado (Aseprite) |
+| `normal_%_btn-export.png`, `normal_exp_btn-export.png` | 80×80 | Botones `mod` y `exp` exportados (Aseprite) |
 | `fondo-export.png` | 1600×2600 | Fondo rosa y crema diseñado en Aseprite (kawaii, Added Wed Nov 2026) |
 | `pantalla-export.png` | 1320×410 | Pantalla de resultados diseñada en Aseprite (colores oscuros de fondo de pantalla) |
 
