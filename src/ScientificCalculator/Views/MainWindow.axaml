@@ -100,16 +100,20 @@
                     Padding="2"
                     VerticalAlignment="Center">
               <StackPanel Orientation="Horizontal" Spacing="2">
-                <Button Classes="pill"
-                        Classes.active="{Binding IsDegrees}"
-                        Content="DEG"
-                        Command="{Binding SetDegreesCommand}"
-                        ToolTip.Tip="Grados" />
-                <Button Classes="pill"
-                        Classes.active="{Binding IsRadians}"
-                        Content="RAD"
-                        Command="{Binding SetRadiansCommand}"
-                        ToolTip.Tip="Radianes" />
+                <Button Classes="key" Classes.active="{Binding IsDegrees}" AutomationProperties.Name="DEG"
+                        Command="{Binding SetDegreesCommand}" ToolTip.Tip="Grados">
+                  <Grid>
+                    <Image Classes="normal" Source="/Assets/Original/normal_deg_.png" />
+                    <Image Classes="pressed" Source="/Assets/Original/pressed_deg_.png" />
+                  </Grid>
+                </Button>
+                <Button Classes="key" Classes.active="{Binding IsRadians}" AutomationProperties.Name="RAD"
+                        Command="{Binding SetRadiansCommand}" ToolTip.Tip="Radianes">
+                  <Grid>
+                    <Image Classes="normal" Source="/Assets/Original/normal_rad_.png" />
+                    <Image Classes="pressed" Source="/Assets/Original/pressed_rad_.png" />
+                  </Grid>
+                </Button>
               </StackPanel>
             </Border>
           </Grid>
@@ -157,11 +161,36 @@
                        Height="28"
                        HorizontalAlignment="Center"
                        Margin="0,0,0,4">
-            <Button Classes="memo" Content="MC" Command="{Binding MemoryClearCommand}" ToolTip.Tip="Borrar memoria" AutomationProperties.Name="MC" />
-            <Button Classes="memo" Content="MR" Command="{Binding MemoryRecallCommand}" ToolTip.Tip="Recuperar memoria" AutomationProperties.Name="MR" />
-            <Button Classes="memo" Content="M+" Command="{Binding MemoryAddCommand}" ToolTip.Tip="Sumar a la memoria" AutomationProperties.Name="M+" />
-            <Button Classes="memo" Content="M−" Command="{Binding MemorySubtractCommand}" ToolTip.Tip="Restar de la memoria" AutomationProperties.Name="M-" />
-            <Button Classes="memo" Content="MS" Command="{Binding MemoryStoreCommand}" ToolTip.Tip="Guardar en memoria" AutomationProperties.Name="MS" />
+            <Button Classes="key" AutomationProperties.Name="MC" Command="{Binding MemoryClearCommand}" ToolTip.Tip="Borrar memoria">
+              <Grid>
+                <Image Classes="normal" Source="/Assets/Original/normal_mc_.png" />
+                <Image Classes="pressed" Source="/Assets/Original/pressed_mc_.png" />
+              </Grid>
+            </Button>
+            <Button Classes="key" AutomationProperties.Name="MR" Command="{Binding MemoryRecallCommand}" ToolTip.Tip="Recuperar memoria">
+              <Grid>
+                <Image Classes="normal" Source="/Assets/Original/normal_mr_.png" />
+                <Image Classes="pressed" Source="/Assets/Original/pressed_mr_.png" />
+              </Grid>
+            </Button>
+            <Button Classes="key" AutomationProperties.Name="M+" Command="{Binding MemoryAddCommand}" ToolTip.Tip="Sumar a la memoria">
+              <Grid>
+                <Image Classes="normal" Source="/Assets/Original/normal_m+_.png" />
+                <Image Classes="pressed" Source="/Assets/Original/pressed_m+_.png" />
+              </Grid>
+            </Button>
+            <Button Classes="key" AutomationProperties.Name="M-" Command="{Binding MemorySubtractCommand}" ToolTip.Tip="Restar de la memoria">
+              <Grid>
+                <Image Classes="normal" Source="/Assets/Original/normal_m-_.png" />
+                <Image Classes="pressed" Source="/Assets/Original/pressed_m-_.png" />
+              </Grid>
+            </Button>
+            <Button Classes="key" AutomationProperties.Name="MS" Command="{Binding MemoryStoreCommand}" ToolTip.Tip="Guardar en memoria">
+              <Grid>
+                <Image Classes="normal" Source="/Assets/Original/normal_ms_.png" />
+                <Image Classes="pressed" Source="/Assets/Original/pressed_ms_.png" />
+              </Grid>
+            </Button>
           </UniformGrid>
 
           <!-- Teclado: 5 columnas x 7 filas en Viewbox -->
