@@ -53,7 +53,7 @@ public partial class MainWindow : Window
     }
 
     /// <summary>
-    /// Muestra el estado "pressed" del botón durante 1 segundo, volviendo luego al estado "normal".
+    /// Muestra el estado "pressed" del botón durante 0.3 segundos, volviendo luego al estado "normal".
     /// </summary>
     public void TriggerButtonPress(Button button)
     {
@@ -74,7 +74,7 @@ public partial class MainWindow : Window
                 normalImg.Opacity = 0;
                 pressedImg.Opacity = 1;
 
-                var timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
+                var timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(300) };
                 timer.Tick += (_, _) =>
                 {
                     timer.Stop();
@@ -91,7 +91,7 @@ public partial class MainWindow : Window
 
         // Teclas científicas o de memoria
         button.Classes.Add("is-pressed");
-        var pixelTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
+        var pixelTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(300) };
         pixelTimer.Tick += (_, _) =>
         {
             pixelTimer.Stop();

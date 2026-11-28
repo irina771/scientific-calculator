@@ -19,51 +19,26 @@
         RenderOptions.BitmapInterpolationMode="None">
 
   <!-- Marco exterior kawaii con esquinas redondeadas y el fondo con estrellas hasta el borde -->
-  <Border Background="#FDCDEA"
-          BorderBrush="#7B2856"
-          BorderThickness="2"
-          CornerRadius="16"
-          ClipToBounds="True"
+  <Border ClipToBounds="True"
           BoxShadow="0 10 30 0 #557A2855">
     <Grid>
 
-      <Image Source="/Assets/Original/fondo-export.png"
+      <Image Source="/Assets/Original/fondo-export2.png"
              Stretch="Fill"
              Margin="-18,-17,-20,-17"
              IsHitTestVisible="False" />
 
       <Grid RowDefinitions="36,*">
 
-      <!-- Barra de título kawaii propia sobre el fondo de la app -->
+      <!-- Barra de título sobre el fondo de la app -->
       <Grid Grid.Row="0"
             Background="Transparent"
             ColumnDefinitions="Auto,Auto,*,Auto"
             PointerPressed="TitleBar_PointerPressed"
-            Height="36">
-        <Image Grid.Column="0"
-               Source="/Assets/Original/icon.png"
-               Width="50"
-               Height="44"
-               Stretch="Uniform"
-               Margin="12,0,8,0"
-               VerticalAlignment="Center" />
-
-        <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
-          <TextBlock Text="Calculadora científica"
-                     FontSize="13"
-                     FontWeight="Bold"
-                     Foreground="#52183B"
-                     VerticalAlignment="Center" />
-          <TextBlock Text=" ✧"
-                     FontSize="12"
-                     Foreground="#FF6EA8"
-                     VerticalAlignment="Center" />
-        </StackPanel>
+            Height="20">
 
         <!-- Cápsula con botones de ventana (minimizar y cerrar) -->
         <Border Grid.Column="3"
-                Background="#FFD3E8"
-                BorderBrush="#FFA8D2"
                 BorderThickness="1.5"
                 CornerRadius="12"
                 Margin="0,0,10,0"
@@ -118,7 +93,7 @@
 
           <!-- Pantalla con el alto original (90) y menos larga (310) alineada al teclado -->
           <Grid Grid.Row="1" Width="380" Height="100" HorizontalAlignment="Center" Margin="0,2,0,4">
-            <Image Source="/Assets/Original/pantalla-export.png"
+            <Image Source="/Assets/Original/pantalla-export2.png"
                    Stretch="Fill"
                    IsHitTestVisible="False" />
 
@@ -203,35 +178,35 @@
 
               <!-- Fila 1 -->
               <Button Grid.Row="0" Grid.Column="0" Classes="key" AutomationProperties.Name="2nd"
-                      Command="{Binding ToggleSecondCommand}" ToolTip.Tip="Funciones inversas" Width="52" Height="52">
+                      Command="{Binding ToggleSecondCommand}" ToolTip.Tip="Funciones inversas" Width="54" Height="54">
                 <Grid>
                   <Image Classes="normal" Source="/Assets/Original/normal_2nd_btn-export.png" />
                   <Image Classes="pressed" Source="/Assets/Original/pressed_2nd_btn-export.png" />
                 </Grid>
               </Button>
               <Button Grid.Row="0" Grid.Column="1" Classes="key" AutomationProperties.Name="pi"
-                      Command="{Binding InputConstantCommand}" CommandParameter="π" ToolTip.Tip="Pi" Width="52" Height="52">
+                      Command="{Binding InputConstantCommand}" CommandParameter="π" ToolTip.Tip="Pi" Width="54" Height="54">
                 <Grid>
                   <Image Classes="normal" Source="/Assets/Original/normal_pi_btn-export.png" />
                   <Image Classes="pressed" Source="/Assets/Original/pressed_pi_btn-export.png" />
                 </Grid>
               </Button>
               <Button Grid.Row="0" Grid.Column="2" Classes="key" AutomationProperties.Name="euler"
-                      Command="{Binding InputConstantCommand}" CommandParameter="e" ToolTip.Tip="Número de Euler" Width="52" Height="52">
+                      Command="{Binding InputConstantCommand}" CommandParameter="e" ToolTip.Tip="Número de Euler" Width="54" Height="54">
                 <Grid>
                   <Image Classes="normal" Source="/Assets/Original/normal_e_btn-export.png" />
                   <Image Classes="pressed" Source="/Assets/Original/pressed_e_btn-export.png" />
                 </Grid>
               </Button>
               <Button Grid.Row="0" Grid.Column="3" Classes="key" AutomationProperties.Name="CE"
-                      Command="{Binding ClearEntryCommand}" ToolTip.Tip="Borrar la entrada" Width="52" Height="52">
+                      Command="{Binding ClearEntryCommand}" ToolTip.Tip="Borrar la entrada" Width="54" Height="54">
                 <Grid>
                   <Image Classes="normal" Source="/Assets/Original/normal_c_btn.png" />
                   <Image Classes="pressed" Source="/Assets/Original/Pressed/pressed_c_btn.png" />
                 </Grid>
               </Button>
               <Button Grid.Row="0" Grid.Column="4" Classes="key" AutomationProperties.Name="borrar"
-                      Command="{Binding BackspaceCommand}" ToolTip.Tip="Borrar un carácter" Width="52" Height="52">
+                      Command="{Binding BackspaceCommand}" ToolTip.Tip="Borrar un carácter" Width="54" Height="54">
                 <Grid>
                   <Image Classes="normal" Source="/Assets/Original/normal_arrow_btn-export.png" />
                   <Image Classes="pressed" Source="/Assets/Original/pressed_arrow_btn-export.png" />
@@ -240,35 +215,35 @@
 
               <!-- Fila 2 -->
               <Button Grid.Row="1" Grid.Column="0" Classes="key" AutomationProperties.Name="cuadrado"
-                      Command="{Binding InputOperatorCommand}" CommandParameter="^2" ToolTip.Tip="Cuadrado · cubo con 2nd" Width="52" Height="52">
+                      Command="{Binding InputOperatorCommand}" CommandParameter="^2" ToolTip.Tip="Cuadrado · cubo con 2nd" Width="54" Height="54">
                 <Grid>
                   <Image Classes="normal" Source="/Assets/Original/normal_x2_btn-export.png" />
                   <Image Classes="pressed" Source="/Assets/Original/pressed_x2_btn-export.png" />
                 </Grid>
               </Button>
               <Button Grid.Row="1" Grid.Column="1" Classes="key" AutomationProperties.Name="reciproco"
-                      Command="{Binding InputReciprocalCommand}" ToolTip.Tip="Recíproco" Width="52" Height="52">
+                      Command="{Binding InputReciprocalCommand}" ToolTip.Tip="Recíproco" Width="54" Height="54">
                 <Grid>
                   <Image Classes="normal" Source="/Assets/Original/normal_1x_btn-export.png" />
                   <Image Classes="pressed" Source="/Assets/Original/pressed_1x_btn-export.png" />
                 </Grid>
               </Button>
               <Button Grid.Row="1" Grid.Column="2" Classes="key" AutomationProperties.Name="valor_absoluto"
-                      Command="{Binding InputAbsCommand}" ToolTip.Tip="Valor absoluto" Width="52" Height="52">
+                      Command="{Binding InputAbsCommand}" ToolTip.Tip="Valor absoluto" Width="54" Height="54">
                 <Grid>
                   <Image Classes="normal" Source="/Assets/Original/normal_valor absoluto_btn-export.png" />
                   <Image Classes="pressed" Source="/Assets/Original/pressed_valor absoluto_btn-export.png" />
                 </Grid>
               </Button>
               <Button Grid.Row="1" Grid.Column="3" Classes="key" AutomationProperties.Name="EXP"
-                      Command="{Binding InputExpCommand}" ToolTip.Tip="Notación científica" Width="52" Height="52">
+                      Command="{Binding InputExpCommand}" ToolTip.Tip="Notación científica" Width="54" Height="54">
                 <Grid>
                   <Image Classes="normal" Source="/Assets/Original/normal_exp_btn-export.png" />
                   <Image Classes="pressed" Source="/Assets/Original/pressed_exp_btn-export.png" />
                 </Grid>
               </Button>
               <Button Grid.Row="1" Grid.Column="4" Classes="key" AutomationProperties.Name="mod"
-                      Command="{Binding InputPercentCommand}" ToolTip.Tip="Porcentaje / módulo" Width="52" Height="52">
+                      Command="{Binding InputPercentCommand}" ToolTip.Tip="Porcentaje / módulo" Width="54" Height="54">
                 <Grid>
                   <Image Classes="normal" Source="/Assets/Original/normal_%_btn-export.png" />
                   <Image Classes="pressed" Source="/Assets/Original/pressed_%_btn-export.png" />
@@ -278,35 +253,35 @@
               <!-- Fila 3 -->
               <Button Grid.Row="2" Grid.Column="0" Classes="key" AutomationProperties.Name="raiz"
                       Command="{Binding ScienceCommand}" CommandParameter="sqrt"
-                      ToolTip.Tip="Raíz cuadrada · raíz cúbica con 2nd" Width="52" Height="52">
+                      ToolTip.Tip="Raíz cuadrada · raíz cúbica con 2nd" Width="54" Height="54">
                 <Grid>
                   <Image Classes="normal" Source="/Assets/Original/normal_raiz cuadrada_btn-export.png" />
                   <Image Classes="pressed" Source="/Assets/Original/pressed_raiz cuadrada_btn-export.png" />
                 </Grid>
               </Button>
               <Button Grid.Row="2" Grid.Column="1" Classes="key" AutomationProperties.Name="parentesis_abre"
-                      Command="{Binding InputOpenParenCommand}" ToolTip.Tip="Abrir paréntesis" Width="52" Height="52">
+                      Command="{Binding InputOpenParenCommand}" ToolTip.Tip="Abrir paréntesis" Width="54" Height="54">
                 <Grid>
                   <Image Classes="normal" Source="/Assets/Original/normal_(_btn-export.png" />
                   <Image Classes="pressed" Source="/Assets/Original/pressed_(_btn-export.png" />
                 </Grid>
               </Button>
               <Button Grid.Row="2" Grid.Column="2" Classes="key" AutomationProperties.Name="parentesis_cierra"
-                      Command="{Binding InputCloseParenCommand}" ToolTip.Tip="Cerrar paréntesis" Width="52" Height="52">
+                      Command="{Binding InputCloseParenCommand}" ToolTip.Tip="Cerrar paréntesis" Width="54" Height="54">
                 <Grid>
                   <Image Classes="normal" Source="/Assets/Original/normal_)_btn-export.png" />
                   <Image Classes="pressed" Source="/Assets/Original/pressed_)_btn-export.png" />
                 </Grid>
               </Button>
               <Button Grid.Row="2" Grid.Column="3" Classes="key" AutomationProperties.Name="factorial"
-                      Command="{Binding InputFactorialCommand}" ToolTip.Tip="Factorial" Width="52" Height="52">
+                      Command="{Binding InputFactorialCommand}" ToolTip.Tip="Factorial" Width="54" Height="54">
                 <Grid>
                   <Image Classes="normal" Source="/Assets/Original/normal_factorial_btn-export.png" />
                   <Image Classes="pressed" Source="/Assets/Original/pressed_factorial_btn-export.png" />
                 </Grid>
               </Button>
               <Button Grid.Row="2" Grid.Column="4" Classes="key" AutomationProperties.Name="division"
-                      Command="{Binding InputOperatorCommand}" CommandParameter="/" ToolTip.Tip="Dividir" Width="52" Height="52">
+                      Command="{Binding InputOperatorCommand}" CommandParameter="/" ToolTip.Tip="Dividir" Width="54" Height="54">
                 <Grid>
                   <Image Classes="normal" Source="/Assets/Original/normal_divide_btn.png" />
                   <Image Classes="pressed" Source="/Assets/Original/Pressed/pressed_divide_btn.png" />
@@ -315,7 +290,7 @@
 
               <!-- Fila 4 -->
               <Button Grid.Row="3" Grid.Column="0" Classes="key" AutomationProperties.Name="potencia"
-                      Command="{Binding InputPowerCommand}" ToolTip.Tip="Potencia" Width="52" Height="52">
+                      Command="{Binding InputPowerCommand}" ToolTip.Tip="Potencia" Width="54" Height="54">
                 <Grid>
                   <Image Classes="normal" Source="/Assets/Original/normal_potencia_btn-export.png" />
                   <Image Classes="pressed" Source="/Assets/Original/pressed_potencia_btn-export.png" />
@@ -343,7 +318,7 @@
                 </Grid>
               </Button>
               <Button Grid.Row="3" Grid.Column="4" Classes="key" AutomationProperties.Name="multiplicar"
-                      Command="{Binding InputOperatorCommand}" CommandParameter="*" ToolTip.Tip="Multiplicar" Width="52" Height="52">
+                      Command="{Binding InputOperatorCommand}" CommandParameter="*" ToolTip.Tip="Multiplicar" Width="54" Height="54">
                 <Grid>
                   <Image Classes="normal" Source="/Assets/Original/normal_x_btn.png" />
                   <Image Classes="pressed" Source="/Assets/Original/Pressed/pressed_x_btn.png" />
@@ -352,7 +327,7 @@
 
               <!-- Fila 5 -->
               <Button Grid.Row="4" Grid.Column="0" Classes="key" AutomationProperties.Name="10x"
-                      Command="{Binding InputFunctionCommand}" CommandParameter="10^" ToolTip.Tip="10 elevado al exponente" Width="52" Height="52">
+                      Command="{Binding InputFunctionCommand}" CommandParameter="10^" ToolTip.Tip="10 elevado al exponente" Width="54" Height="54">
                 <Grid>
                   <Image Classes="normal" Source="/Assets/Original/normal_10x_btn-export.png" />
                   <Image Classes="pressed" Source="/Assets/Original/pressed_10x_btn-export.png" />
@@ -380,7 +355,7 @@
                 </Grid>
               </Button>
               <Button Grid.Row="4" Grid.Column="4" Classes="key" AutomationProperties.Name="menos"
-                      Command="{Binding InputOperatorCommand}" CommandParameter="-" ToolTip.Tip="Restar" Width="52" Height="52">
+                      Command="{Binding InputOperatorCommand}" CommandParameter="-" ToolTip.Tip="Restar" Width="54" Height="54">
                 <Grid>
                   <Image Classes="normal" Source="/Assets/Original/normal_-_btn.png" />
                   <Image Classes="pressed" Source="/Assets/Original/Pressed/pressed_-_btn.png" />
@@ -390,7 +365,7 @@
               <!-- Fila 6 -->
               <Button Grid.Row="5" Grid.Column="0" Classes="key" AutomationProperties.Name="log"
                       Command="{Binding ScienceCommand}" CommandParameter="log"
-                      ToolTip.Tip="log: base 10 · 10ˣ con 2nd" Width="52" Height="52">
+                      ToolTip.Tip="log: base 10 · 10ˣ con 2nd" Width="54" Height="54">
                 <Grid>
                   <Image Classes="normal" Source="/Assets/Original/normal_log_btn-export.png" />
                   <Image Classes="pressed" Source="/Assets/Original/pressed_log_btn-export.png" />
@@ -418,7 +393,7 @@
                 </Grid>
               </Button>
               <Button Grid.Row="5" Grid.Column="4" Classes="key" AutomationProperties.Name="mas"
-                      Command="{Binding InputOperatorCommand}" CommandParameter="+" ToolTip.Tip="Sumar" Width="52" Height="52">
+                      Command="{Binding InputOperatorCommand}" CommandParameter="+" ToolTip.Tip="Sumar" Width="54" Height="54">
                 <Grid>
                   <Image Classes="normal" Source="/Assets/Original/normal_+_btn.png" />
                   <Image Classes="pressed" Source="/Assets/Original/Pressed/pressed_+_btn.png" />
@@ -428,7 +403,7 @@
               <!-- Fila 7 -->
               <Button Grid.Row="6" Grid.Column="0" Classes="key" AutomationProperties.Name="ln"
                       Command="{Binding ScienceCommand}" CommandParameter="ln"
-                      ToolTip.Tip="ln: logaritmo natural · eˣ con 2nd" Width="52" Height="52">
+                      ToolTip.Tip="ln: logaritmo natural · eˣ con 2nd" Width="54" Height="54">
                 <Grid>
                   <Image Classes="normal" Source="/Assets/Original/normal_ln_btn-export.png" />
                   <Image Classes="pressed" Source="/Assets/Original/pressed_ln_btn-export.png" />
@@ -456,7 +431,7 @@
                 </Grid>
               </Button>
               <Button Grid.Row="6" Grid.Column="4" Classes="key" AutomationProperties.Name="igual"
-                      Command="{Binding CalculateEqualsCommand}" ToolTip.Tip="Calcular resultado" Width="52" Height="52">
+                      Command="{Binding CalculateEqualsCommand}" ToolTip.Tip="Calcular resultado" Width="54" Height="54">
                 <Grid>
                   <Image Classes="normal" Source="/Assets/Original/normal_=_btn.png" />
                   <Image Classes="pressed" Source="/Assets/Original/Pressed/pressed_=_btn.png" />

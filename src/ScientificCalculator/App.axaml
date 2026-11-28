@@ -204,11 +204,11 @@
       <Setter Property="Background" Value="Transparent" />
       <Setter Property="Foreground" Value="#52183B" />
       <Setter Property="FontFamily" Value="Segoe UI" />
-      <Setter Property="FontSize" Value="12" />
+      <Setter Property="FontSize" Value="15" />
       <Setter Property="FontWeight" Value="Bold" />
-      <Setter Property="Width" Value="28" />
-      <Setter Property="Height" Value="22" />
-      <Setter Property="Margin" Value="1,0" />
+      <Setter Property="Width" Value="35" />
+      <Setter Property="Height" Value="28" />
+      <Setter Property="Margin" Value="1,5,1,0" />
       <Setter Property="Padding" Value="0" />
       <Setter Property="CornerRadius" Value="10" />
       <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -216,8 +216,8 @@
     </Style>
 
     <Style Selector="Button.caption:pointerover /template/ ContentPresenter">
-      <Setter Property="Background" Value="#FF9EC8" />
-      <Setter Property="Foreground" Value="#FFFFFF" />
+      <Setter Property="Background" Value="Transparent" />
+      <!-- <Setter Property="Foreground" Value="#FFFFFF" /> -->
     </Style>
   </Application.Styles>
 </Application>
